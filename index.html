@@ -595,7 +595,7 @@
       <div class="sop-card-arrow">›</div>
     </div>
 
-    <div class="sop-group-label" style="margin-top:16px">⚠ Diagnostica compressori a vite</div>
+    <div class="sop-group-label" style="margin-top:12px">⚠ Diagnostica compressori a vite</div>
 
     <div class="sop-card" onclick="startSOP('sop1')">
       <div class="sop-icon urgent">🌡️</div>
@@ -637,6 +637,32 @@
       <div class="sop-card-text"><h3>Rumore anomalo</h3><p>Battito · fischio · vibrazione insolita</p></div>
       <div class="sop-card-arrow">›</div>
     </div>
+    <div class="sop-card" onclick="startSOP('sopN2')">
+      <div class="sop-icon normal">💨</div>
+      <div class="sop-card-text"><h3>Esce aria dalla valvola aspirazione da fermo</h3><p>Causa: valvola di minima pressione</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sopN3')">
+      <div class="sop-icon normal">🔧</div>
+      <div class="sop-card-text"><h3>Non carica aria</h3><p>Diagnosi: elettrovalvola o kit valvola aspirazione</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
+    <div class="sop-group-label" style="margin-top:20px">🔩 COMPRESSORI A PISTONI</div>
+
+    <div class="sop-card" onclick="startSOP('sopN1')">
+      <div class="sop-icon normal">🔩</div>
+      <div class="sop-card-text"><h3>Riparazione compressore a pistoni</h3><p>8 problemi · gira dritto · pressostato · cinghie · olio · sbiellamento</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
+    <div class="sop-group-label" style="margin-top:20px">⚙ COMPRESSORI OIL-FREE</div>
+
+    <div class="sop-card" onclick="startSOP('sopN4')">
+      <div class="sop-icon normal">⚙</div>
+      <div class="sop-card-text"><h3>Atlas Copco ZT / ZR</h3><p>Alta temperatura · pressione bassa · olio nell'aria · manutenzione</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
 
     <div class="sop-group-label" style="margin-top:20px">❄️ ESSICCATORI</div>
 
@@ -660,48 +686,24 @@
     </div>
 
     <div class="sop-group-label" style="margin-top:20px">🚧 IN SVILUPPO — prossimamente</div>
-    <div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:13px;color:#92400E;line-height:1.6">
-      Le seguenti SOP sono in preparazione:<br>
-      • Riparazione compressore a pistoni (problemi principali)<br>
-      • Esce aria dalla valvola di aspirazione da fermo in continuo<br>
-      • Non carica aria: elettrovalvola o kit valvola aspirazione<br>
-      • Riparazione compressori oil-free e relativi problemi
+    <div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:13px;color:#92400E;line-height:1.8">
+      SOP in preparazione con Tonino:<br>
+      • Compressori oil-free altri marchi<br>
+      • SOP specifiche per modelli ABAC più comuni
     </div>
 
     <div class="sop-group-label" style="margin-top:20px">📞 NUMERI UTILI</div>
-          <div style="background:white;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:20px">
+    <div style="background:white;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:20px">
       <div style="background:#1A2F4B;padding:10px 16px">
         <div style="color:white;font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:.5px">Contatti di riferimento</div>
       </div>
-      <a href="tel:+393404102949" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Tonino — Responsabile Tecnico CLA</div><div style="font-size:12px;color:#64748B">+39 3404102949</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#EFF6FF;color:#2563EB">CLA</div>
-        <div style="font-size:20px">📞</div>
-      </a><a href="tel:+393498335185" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Lorenzo Chialastri</div><div style="font-size:12px;color:#64748B">+39 3498335185</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#EFF6FF;color:#2563EB">CLA</div>
-        <div style="font-size:20px">📞</div>
-      </a><a href="tel:+393484957167" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Riccardo — Tecnico ALMIG</div><div style="font-size:12px;color:#64748B">+39 3484957167</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div>
-        <div style="font-size:20px">📞</div>
-      </a><a href="tel:+393316566202" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Matteo Milan — Tecnico ABAC</div><div style="font-size:12px;color:#64748B">+39 3316566202</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div>
-        <div style="font-size:20px">📞</div>
-      </a><a href="tel:+393407436396" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Cunico — Tecnico ABAC</div><div style="font-size:12px;color:#64748B">+39 3407436396</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div>
-        <div style="font-size:20px">📞</div>
-      </a><a href="tel:+393346848578" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Massimiliano D'Elia — Tecnico ABAC Pistoni</div><div style="font-size:12px;color:#64748B">+39 3346848578</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div>
-        <div style="font-size:20px">📞</div>
-      </a><a href="tel:+393357795733" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;">
-        <div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Polimanti — Tecnico Atlas Copco</div><div style="font-size:12px;color:#64748B">+39 3357795733</div></div>
-        <div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div>
-        <div style="font-size:20px">📞</div>
-      </a>
+      <a href="tel:+393404102949" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Tonino — Responsabile Tecnico CLA</div><div style="font-size:12px;color:#64748B">+39 340 410 2949</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#EFF6FF;color:#2563EB">CLA</div><div style="font-size:20px;color:#2563EB">📞</div></a>
+      <a href="tel:+393498335185" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Lorenzo Chialastri</div><div style="font-size:12px;color:#64748B">+39 349 833 5185</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#EFF6FF;color:#2563EB">CLA</div><div style="font-size:20px;color:#2563EB">📞</div></a>
+      <a href="tel:+393484957167" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Riccardo — Tecnico ALMIG</div><div style="font-size:12px;color:#64748B">+39 348 495 7167</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div><div style="font-size:20px;color:#2563EB">📞</div></a>
+      <a href="tel:+393316566202" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Matteo Milan — Tecnico ABAC</div><div style="font-size:12px;color:#64748B">+39 331 656 6202</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div><div style="font-size:20px;color:#2563EB">📞</div></a>
+      <a href="tel:+393407436396" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Cunico — Tecnico ABAC</div><div style="font-size:12px;color:#64748B">+39 340 743 6396</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div><div style="font-size:20px;color:#2563EB">📞</div></a>
+      <a href="tel:+393346848578" style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1F5F9;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Massimiliano D'Elia — Tecnico ABAC Pistoni</div><div style="font-size:12px;color:#64748B">+39 334 684 8578</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div><div style="font-size:20px;color:#2563EB">📞</div></a>
+      <a href="tel:+393357795733" style="display:flex;align-items:center;gap:12px;padding:12px 16px;text-decoration:none;"><div style="flex:1"><div style="font-size:13px;font-weight:bold;color:#0F172A">Polimanti — Tecnico Atlas Copco</div><div style="font-size:12px;color:#64748B">+39 335 779 5733</div></div><div style="font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:#F0FDF4;color:#059669">Fornitore</div><div style="font-size:20px;color:#2563EB">📞</div></a>
     </div>
 
   </div>
@@ -863,6 +865,15 @@ sop1: {
   subtitle: "Cause multiple · segui l'ordine",
   steps: [
     {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop1_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop1_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop1_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
+    {
       title: "VERIFICA AMBIENTE E VENTILAZIONE",
       checks: [
         { id: "s1_1", label: "Temperatura ambiente locale compressori", input: "°C", type: "text" },
@@ -950,13 +961,33 @@ sop1: {
         "Prima di chiamare: annota TUTTI i valori misurati negli step precedenti."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop1_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop1_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop1_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop1_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop2: {
   title: "SOP-2 — PROBLEMA DI CORRENTE",
   subtitle: "Tipico su inverter · sbalzi di rete",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop2_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop2_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop2_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "VERIFICA TIPO MACCHINA E SINTOMO",
       checks: [
@@ -1010,13 +1041,33 @@ sop2: {
         "Annota codice errore esatto e valori tensione/corrente prima di chiamare."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop2_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop2_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop2_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop2_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop3: {
   title: "SOP-3 — MANCANZA D'ARIA",
   subtitle: "Macchina funziona ma pressione bassa",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop3_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop3_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop3_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "PROBLEMA SULLA MACCHINA O SULL'IMPIANTO?",
       checks: [
@@ -1077,13 +1128,33 @@ sop3: {
         "Annota tutti i valori di pressione rilevati prima di chiamare."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop3_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop3_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop3_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop3_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop4: {
   title: "SOP-4 — OLIO DAL FILTRO ARIA",
   subtitle: "Valvola di aspirazione da revisionare",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop4_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop4_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop4_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "CONFERMA SINTOMO",
       checks: [
@@ -1145,13 +1216,33 @@ sop4: {
         "Non procedere con ulteriori smontaggi senza supporto diagnostico."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop4_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop4_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop4_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop4_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop5: {
   title: "SOP-5 — MACCHINA NON PARTE",
   subtitle: "Premo ON · nessuna risposta",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop5_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop5_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop5_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "VERIFICA ALIMENTAZIONE GENERALE",
       checks: [
@@ -1213,13 +1304,33 @@ sop5: {
         "Annota tutti gli esiti precedenti e il codice errore esatto."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop5_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop5_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop5_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop5_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop6: {
   title: "SOP-6 — RUMORE ANOMALO",
   subtitle: "Battito · fischio · vibrazione",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop6_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop6_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop6_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "CARATTERIZZA IL RUMORE",
       checks: [
@@ -1270,13 +1381,33 @@ sop6: {
         "Registra un breve audio/video con il telefono prima di chiamare: aiuta la diagnosi."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop6_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop6_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop6_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop6_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop7: {
   title: "SOP-7 — PERDITE D'OLIO",
   subtitle: "Basamento o raccordi · non da filtro aria",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop7_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop7_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop7_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "LOCALIZZA IL PUNTO DI PERDITA",
       checks: [
@@ -1334,13 +1465,33 @@ sop7: {
         "Fotografa la zona della perdita prima di chiamare: accelera la diagnosi."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop7_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop7_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop7_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop7_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop8: {
   title: "SOP-8 — SCARICO CONDENSA",
   subtitle: "Non scarica · oppure scarica sempre",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop8_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop8_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop8_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "IDENTIFICA IL TIPO DI GUASTO",
       checks: [
@@ -1386,13 +1537,33 @@ sop8: {
         "Non lasciare il cliente con scaricatore guasto per più di qualche giorno."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop8_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop8_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop8_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop8_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop9: {
   title: "SOP-9 — ESSICCATORE NON ASCIUGA",
   subtitle: "Aria umida in uscita",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop9_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop9_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop9_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "TIPO DI ESSICCATORE",
       checks: [
@@ -1441,13 +1612,33 @@ sop9: {
         "Annota punto di rugiada misurato (se disponibile) e condizioni ambientali."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop9_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop9_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop9_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop9_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop10: {
   title: "SOP-10 — CICLA TROPPO SPESSO",
   subtitle: "Accensioni/spegnimenti ravvicinati",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop10_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop10_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop10_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "MISURA LA FREQUENZA DI CICLAGGIO",
       checks: [
@@ -1494,13 +1685,33 @@ sop10: {
         "Annota tempo ciclo, differenziale impostato e capacità serbatoio prima di chiamare."
       ]
     }
-  ]
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop10_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop10_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop10_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop10_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
 },
 
 sop11: {
   title: "SOP-11 — PERDITE D'ARIA IMPIANTO",
   subtitle: "Sibilo · calo pressione · spreco aria",
   steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop11_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "sop11_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "sop11_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici prima di iniziare."]
+    },
     {
       title: "QUANTIFICA LA PERDITA",
       checks: [
@@ -1562,6 +1773,353 @@ sop11: {
   ]
 }
 
+
+sopN1: {
+  title: "SOP-N1 — COMPRESSORE A PISTONI",
+  subtitle: "8 problemi con soluzione passo per passo — prevalentemente ABAC",
+  steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n1_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "n1_foto_pre2", label: "📷 Foto zona specifica del problema", options: ["Scattata"] },
+        { id: "n1_foto_pre3", label: "📷 Foto targhetta macchina (matricola, modello)", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie prima di toccare qualsiasi cosa.", "Inviare su WhatsApp gruppo tecnici."]
+    },
+    {
+      title: "SELEZIONA IL PROBLEMA",
+      checks: [
+        { id: "n1_prob", label: "Qual è il problema?", options: ["Gira dritto?","Perdita sotto pressostato","Problema pressostato","Piastra valvole","Kit guarnizioni","Cambio olio","Sbiellato?","Cinghie"] }
+      ],
+      decision: ["Seleziona il problema riscontrato e procedi con gli step specifici qui sotto."]
+    },
+    {
+      title: "PROBLEMA 1 — COME CONTROLLARE SE GIRA DRITTO",
+      checks: [
+        { id: "n1_1_1", label: "Spegnere, sezionare alimentazione, rimuovere schermo protezione" },
+        { id: "n1_1_2", label: "METODO MANUALE: girare a mano il volano/puleggia lentamente", options: ["Fluido","Attrito anomalo"] },
+        { id: "n1_1_3", label: "Su trifase: verificare freccia sul corpo compressore vs senso reale", options: ["Corretto","Invertito"] },
+        { id: "n1_1_4", label: "Se invertito su trifase: invertire due fasi nell'alimentazione", options: ["Fatto","N/A monofase"] },
+        { id: "n1_1_5", label: "Su monofase se gira al contrario: verificare condensatore di avviamento", options: ["OK","Guasto"] }
+      ],
+      decision: ["Gira al contrario su trifase → inverti due fasi (basta 2 minuti).", "Gira al contrario su monofase → condensatore guasto → sostituire.", "Attrito anomalo girando a mano → possibile sbiellamento → vai al PROBLEMA 7."]
+    },
+    {
+      title: "PROBLEMA 2 — PERDITA SOTTO PRESSOSTATO (valvola ritegno)",
+      checks: [
+        { id: "n1_2_1", label: "Sintomo confermato: esce aria/acqua dal tubetto di scarico sotto il pressostato a macchina ferma", options: ["Confermato"] },
+        { id: "n1_2_2", label: "Spegnere, scaricare pressione a zero, sezionare alimentazione", options: ["Fatto"] },
+        { id: "n1_2_3", label: "Localizzare e smontare la valvola di ritegno (tubo tra testa e serbatoio)", options: ["Smontata"] },
+        { id: "n1_2_4", label: "Ispezionare gommino/disco di tenuta", options: ["OK","Usurato","Rotto"] },
+        { id: "n1_2_5", label: "Ispezionare molla interna", options: ["OK","Deformata","Rotta"] },
+        { id: "n1_2_6", label: "Ispezionare sede valvola: rigature o depositi?", options: ["OK","Rigata"] },
+        { id: "n1_2_7", label: "Sostituire gommino e molla con kit", input: "Kit utilizzato", type: "text" },
+        { id: "n1_2_8", label: "Rimontare con teflon sul filetto e ritestare", options: ["Risolto","Persiste"] }
+      ],
+      decision: ["Persiste dopo kit → sede rigata → sostituire intera valvola di ritegno.", "Su alcuni ABAC la valvola è integrata nel pressostato → sostituire il pressostato completo."]
+    },
+    {
+      title: "PROBLEMA 3 — PROBLEMI CON IL PRESSOSTATO",
+      checks: [
+        { id: "n1_3_1", label: "Sintomo: non si spegne / non si riavvia / non parte", options: ["Non si spegne","Non si riavvia","Non parte"] },
+        { id: "n1_3_2", label: "Misurare pressione reale nel serbatoio con manometro esterno", input: "bar", type: "text" },
+        { id: "n1_3_3", label: "Testare continuità elettrica del pressostato con multimetro", options: ["OK","Rotto"] },
+        { id: "n1_3_4", label: "Se ha viti di regolazione: tentare taratura prima di sostituire", options: ["Risolto con taratura","Non risolvibile"] },
+        { id: "n1_3_5", label: "Sostituire pressostato con uno di taratura identica", input: "Codice nuovo", type: "text" },
+        { id: "n1_3_6", label: "Verificare cut-in e cut-out dopo sostituzione", input: "Cut-in/Cut-out bar", type: "text" }
+      ],
+      decision: ["Non forzare taratura oltre valori originali → rischio sovrappressione.", "Dopo sostituzione verificare sempre che la valvola di sicurezza non intervenga prima del cut-out."]
+    },
+    {
+      title: "PROBLEMA 4 — PIASTRA VALVOLE",
+      checks: [
+        { id: "n1_4_1", label: "Sintomo: cicla spesso, non raggiunge pressione, soffiaggio dalla testa", options: ["Confermato"] },
+        { id: "n1_4_2", label: "Spegnere, pressione zero, sezionare, attendere raffreddamento 20 min", options: ["Fatto"] },
+        { id: "n1_4_3", label: "Smontare coperchio testata (bulloni a croce) ed estrarre piastra valvole", options: ["Fatto"] },
+        { id: "n1_4_4", label: "Ispezionare lamelle/linguette: rotte, deformate, incollate?", options: ["OK","Danneggiate"] },
+        { id: "n1_4_5", label: "Ispezionare piastra: rigature, depositi carbonio, planarità?", options: ["OK","Da sostituire"] },
+        { id: "n1_4_6", label: "Ispezionare guarnizione testata: soffiaggi, bruciature?", options: ["OK","Da sostituire"] },
+        { id: "n1_4_7", label: "Sostituire piastra/kit lamelle + guarnizione testata (SEMPRE insieme)", input: "Kit utilizzato", type: "text" },
+        { id: "n1_4_8", label: "Rimontare bulloni a croce con chiave dinamometrica", input: "Nm", type: "text" }
+      ],
+      decision: ["La guarnizione testata va SEMPRE sostituita in ogni apertura — anche se sembra integra.", "Lamelle rotte → spesso causate da condensa in testa (cicli brevi continui)."]
+    },
+    {
+      title: "PROBLEMA 5 — KIT GUARNIZIONI",
+      checks: [
+        { id: "n1_5_1", label: "Frequenza cambio programmato: ogni 2.000-3.000 ore", input: "Ore attuali", type: "text" },
+        { id: "n1_5_2", label: "Fotografare tutti i componenti PRIMA dello smontaggio", options: ["Fatto"] },
+        { id: "n1_5_3", label: "Smontare testa, cilindri e basamento nell'ordine corretto", options: ["Fatto"] },
+        { id: "n1_5_4", label: "Rimuovere guarnizioni vecchie e pulire piani con raschietto e sgrassatore", options: ["Fatto"] },
+        { id: "n1_5_5", label: "Verificare planità piani di tenuta: rigature o deformazioni?", options: ["OK","Rigature rilevate"] },
+        { id: "n1_5_6", label: "Montare nuove guarnizioni A SECCO (senza sigillante)", options: ["Fatto"] },
+        { id: "n1_5_7", label: "Rimontare in ordine inverso con coppia corretta", input: "Nm", type: "text" },
+        { id: "n1_5_8", label: "Verificare assenza perdite dopo 15 min di funzionamento", options: ["OK","Perdite"] }
+      ],
+      decision: ["Kit guarnizioni ABAC: specificare modello esatto — non sono intercambiabili tra modelli.", "Piani rigati → rettifica o sostituzione componente — le guarnizioni nuove non compensano."]
+    },
+    {
+      title: "PROBLEMA 6 — CAMBIO OLIO",
+      checks: [
+        { id: "n1_6_1", label: "Frequenza: ogni 500 ore o annualmente (quello che viene prima)", input: "Ultime ore cambio", type: "text" },
+        { id: "n1_6_2", label: "Tipo olio: minerale specifico per pistoni SAE 30 — NON olio motore auto", input: "Tipo in uso", type: "text" },
+        { id: "n1_6_3", label: "Avviare 5 min per scaldare l'olio, poi spegnere e sezionare", options: ["Fatto"] },
+        { id: "n1_6_4", label: "Contenitore sotto il tappo di scarico, svitare tappo", options: ["Fatto"] },
+        { id: "n1_6_5", label: "Verificare guarnizione tappo di scarico", options: ["OK","Sostituita"] },
+        { id: "n1_6_6", label: "Caricare olio nuovo fino al segno MAX", input: "Litri caricati", type: "text" },
+        { id: "n1_6_7", label: "Avviare, verificare livello dopo 5 min, rabboccare se necessario", options: ["OK"] },
+        { id: "n1_6_8", label: "Smaltire olio esausto come rifiuto speciale — NON in fogna", options: ["Smaltito correttamente"] }
+      ],
+      decision: ["Olio nero con particelle metalliche → usura interna avanzata → valutare revisione completa.", "Olio bianco lattiginoso → condensa → verificare filtro aria e cicli di lavoro."]
+    },
+    {
+      title: "PROBLEMA 7 — COME ACCORGERSI SE SBIELLATO",
+      isStop: true,
+      checks: [
+        { id: "n1_7_1", label: "Sintomo: rumore metallico forte e ritmico, sincronizzato con la rotazione", options: ["Presente","Assente"] },
+        { id: "n1_7_2", label: "SPEGNERE IMMEDIATAMENTE se rumore metallico forte — non continuare", options: ["Spento"] },
+        { id: "n1_7_3", label: "TEST AMPEROMETRICO: corrente assorbita vs nominale (>15% sopra = attrito anomalo)", input: "Reale/Nominale A", type: "text" },
+        { id: "n1_7_4", label: "TEST TEMPERATURA: il basamento si scalda eccessivamente e rapidamente?", options: ["Normale","Anomalo"] }
+      ],
+      decision: ["Macchina sbiellata = NON riparabile sul campo.", "NON tenere in funzione: rischio danno irreversibile al monoblocco.", "Chiamare Tonino: 340 410 2949 — valutare riparazione vs sostituzione."]
+    },
+    {
+      title: "PROBLEMA 8 — CINGHIE",
+      checks: [
+        { id: "n1_8_1", label: "Controllo visivo: screpolature, fessure, superficie lucida (= slittamento)?", options: ["OK","Da sostituire"] },
+        { id: "n1_8_2", label: "Tensione: premere al centro con pollice — freccia 10-15mm", input: "Freccia mm", type: "text" },
+        { id: "n1_8_3", label: "Allentare il motore sui binari di regolazione", options: ["Fatto"] },
+        { id: "n1_8_4", label: "Verificare stato pulegge: rigature, usura laterale?", options: ["OK","Da sostituire"] },
+        { id: "n1_8_5", label: "Montare cinghia nuova della sezione corretta (A, B, SPA — vedi etichetta macchina)", input: "Sezione", type: "text" },
+        { id: "n1_8_6", label: "Regolare tensione: freccia 10-15mm", input: "Freccia mm", type: "text" },
+        { id: "n1_8_7", label: "Verificare allineamento pulegge con riga dritta", options: ["Allineate","Da correggere"] },
+        { id: "n1_8_8", label: "Stringere bulloni motore e riavviare: cinghia non salta né vibra?", options: ["OK"] }
+      ],
+      decision: ["Sostituire sempre tutte le cinghie insieme — non mescolare vecchie e nuove.", "Cinghia che si consuma rapidamente → verificare allineamento pulegge.", "Pulegge molto consumate → sostituire anche le pulegge."]
+    },
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n1_foto_post1", label: "📷 Foto macchina esterna (visione d'insieme dopo l'intervento)", options: ["Scattata"] },
+        { id: "n1_foto_post2", label: "📷 Foto parte vecchia rimossa (mostra l'usura o il guasto)", options: ["Scattata","N/A"] },
+        { id: "n1_foto_post3", label: "📷 Foto parte nuova installata", options: ["Scattata","N/A"] },
+        { id: "n1_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+  ]
+},
+
+sopN2: {
+  title: "SOP-N2 — ESCE ARIA DALLA VALVOLA ASPIRAZIONE DA FERMO",
+  subtitle: "La causa è la valvola di MINIMA PRESSIONE — non la valvola di aspirazione",
+  steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n2_foto_pre1", label: "📷 Foto macchina esterna", options: ["Scattata"] },
+        { id: "n2_foto_pre2", label: "📷 Foto zona valvola aspirazione (dove esce l'aria)", options: ["Scattata"] },
+        { id: "n2_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici."]
+    },
+    {
+      title: "CAPIRE IL MECCANISMO — LEGGI PRIMA",
+      checks: [
+        { id: "n2_0_1", label: "Ho letto e capito: l'aria esce dall'aspirazione ma la colpa è la valvola di MINIMA PRESSIONE a monte", options: ["Capito"] }
+      ],
+      decision: [
+        "COME FUNZIONA: quando il compressore si ferma, la valvola di minima deve chiudersi per mantenere la pressione nel circuito.",
+        "Se non chiude bene, l'aria del serbatoio risale attraverso il gruppo compressore ed esce dal filtro aria di aspirazione.",
+        "ERRORE COMUNE: smontare la valvola di aspirazione. Non serve — il problema è la valvola di minima a monte.",
+        "La valvola di aspirazione è solo la via di fuga visibile."
+      ]
+    },
+    {
+      title: "CONFERMA DIAGNOSI",
+      checks: [
+        { id: "n2_1_1", label: "Portare il compressore a pressione di esercizio normale", input: "bar", type: "text" },
+        { id: "n2_1_2", label: "Spegnere e osservare: esce aria dal filtro/aspirazione entro pochi secondi?", options: ["Sì, subito","Sì, dopo minuti","No"] },
+        { id: "n2_1_3", label: "Posizionare la mano sul tubo di mandata da fermo: si sente aria che torna indietro?", options: ["Sì, ritorno aria","No"] }
+      ],
+      decision: ["Esce aria subito (secondi) → valvola di minima completamente rotta → sostituire urgente.", "Esce aria lentamente (minuti) → valvola di minima con piccola perdita → sostituzione preventiva.", "Niente aria → problema diverso, verificare guarnizioni testa o valvole aspirazione."]
+    },
+    {
+      title: "LOCALIZZAZIONE E SOSTITUZIONE VALVOLA DI MINIMA",
+      checks: [
+        { id: "n2_2_1", label: "Localizzare la valvola di minima: sul tubo di mandata tra compressore e serbatoio/refrigeratore", options: ["Localizzata"] },
+        { id: "n2_2_2", label: "Identificare codice valvola per ordinare il ricambio", input: "Codice valvola", type: "text" },
+        { id: "n2_2_3", label: "Spegnere, scaricare TUTTA la pressione, sezionare alimentazione", options: ["Pressione zero confermata"] },
+        { id: "n2_2_4", label: "Posizionare contenitore sotto (può uscire olio residuo)", options: ["Fatto"] },
+        { id: "n2_2_5", label: "Smontare la valvola di minima", options: ["Smontata"] },
+        { id: "n2_2_6", label: "La valvola è revisionabile o va sostituita completa?", options: ["Revisionabile","Solo sostituzione completa"] },
+        { id: "n2_2_7", label: "Sostituire guarnizioni e molla (se revisionabile) o valvola completa", input: "Kit/Codice usato", type: "text" },
+        { id: "n2_2_8", label: "Rimontare con teflon sui filetti", options: ["Fatto"] },
+        { id: "n2_2_9", label: "Riavviare e verificare: l'aria non esce più dall'aspirazione a macchina ferma", options: ["Risolto","Persiste"] }
+      ],
+      decision: ["Taratura tipica valvola di minima: 3-4 bar — non si apre sotto quella pressione.", "Se persiste dopo sostituzione: possibile usura avanzata gruppo vite/pistoni — chiama Tonino."]
+    },
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n2_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "n2_foto_post2", label: "📷 Foto valvola di minima vecchia rimossa", options: ["Scattata","N/A"] },
+        { id: "n2_foto_post3", label: "📷 Foto valvola di minima nuova installata", options: ["Scattata"] },
+        { id: "n2_foto_post4", label: "📷 Foto area di lavoro pulita", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto su WhatsApp gruppo tecnici entro fine giornata."]
+    }
+  ]
+},
+
+sopN3: {
+  title: "SOP-N3 — NON CARICA ARIA",
+  subtitle: "Diagnosi differenziale: elettrovalvola o kit valvola aspirazione",
+  steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n3_foto_pre1", label: "📷 Foto macchina esterna", options: ["Scattata"] },
+        { id: "n3_foto_pre2", label: "📷 Foto zona valvola aspirazione", options: ["Scattata"] },
+        { id: "n3_foto_pre3", label: "📷 Foto targhetta macchina", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici."]
+    },
+    {
+      title: "DIAGNOSI RAPIDA — ELETTROVALVOLA O VALVOLA MECCANICA?",
+      checks: [
+        { id: "n3_0_1", label: "Corrente assorbita dalla macchina", input: "Reale/Nominale A", type: "text" },
+        { id: "n3_0_2", label: "Pressione massima raggiunta", input: "bar", type: "text" },
+        { id: "n3_0_3", label: "Diagnosi preliminare", options: ["Sospetto elettrovalvola","Sospetto kit valvola meccanica"] }
+      ],
+      decision: [
+        "ELETTROVALVOLA ROTTA → macchina gira a vuoto, corrente BASSA (sotto nominale), pressione ZERO.",
+        "KIT VALVOLA MECCANICA USURATO → la macchina aspira ma perde aria durante compressione, corrente nella norma, pressione BASSA ma non zero."
+      ]
+    },
+    {
+      title: "TEST ELETTROVALVOLA",
+      checks: [
+        { id: "n3_1_1", label: "Verificare tensione alla bobina elettrovalvola con multimetro", input: "V misurati / V nominali", type: "text" },
+        { id: "n3_1_2", label: "Tensione presente ma valvola non aziona → testare azionamento manuale (pulsante override)", options: ["Si muove","Bloccata"] },
+        { id: "n3_1_3", label: "Misurare resistenza bobina con multimetro", input: "Ohm misurati / Ohm nominali", type: "text" },
+        { id: "n3_1_4", label: "Corpo valvola bloccato: smontare e pulire pistone interno con aria compressa", options: ["Pulita — funziona","Non risolvibile"] },
+        { id: "n3_1_5", label: "Sostituire elettrovalvola se bobina bruciata o corpo irrecuperabile", input: "Codice nuovo", type: "text" }
+      ],
+      decision: ["Tensione assente → problema elettrico a monte (pressostato, timer, cablaggio) — non è la valvola.", "Bobina resistenza infinita (circuito aperto) → bruciata → sostituire.", "Prima di sostituire: verificare che tensione alimentazione corrisponda a tensione nominale bobina."]
+    },
+    {
+      title: "TEST E REVISIONE VALVOLA ASPIRAZIONE MECCANICA",
+      checks: [
+        { id: "n3_2_1", label: "Spegnere, pressione zero, sezionare, attendere raffreddamento", options: ["Fatto"] },
+        { id: "n3_2_2", label: "Smontare filtro aria e accedere alla valvola di aspirazione", options: ["Fatto"] },
+        { id: "n3_2_3", label: "Aprire la valvola di aspirazione", options: ["Fatto"] },
+        { id: "n3_2_4", label: "Ispezionare membrana/pistone: rotture, deformazioni, incrostazioni olio?", options: ["OK","Danneggiata"] },
+        { id: "n3_2_5", label: "Ispezionare molla di ritorno: deformata o indebolita?", options: ["OK","Da sostituire"] },
+        { id: "n3_2_6", label: "Ispezionare sede: rigature o depositi che impediscono tenuta?", options: ["OK","Rigata"] },
+        { id: "n3_2_7", label: "Sostituire kit valvola aspirazione (membrana + molla + O-ring)", input: "Kit utilizzato", type: "text" },
+        { id: "n3_2_8", label: "Riavviare e verificare pressione nominale raggiunta", input: "bar", type: "text" }
+      ],
+      decision: ["Kit valvola aspirazione: cambiare ogni 4.000-6.000 ore su compressori a vite.", "Membrana rovinata da olio → verificare separatore olio-aria a monte — potrebbe essere saturo.", "Pressione ancora bassa dopo revisione → usura gruppo vite → chiama Tonino."]
+    },
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n3_foto_post1", label: "📷 Foto macchina esterna dopo intervento", options: ["Scattata"] },
+        { id: "n3_foto_post2", label: "📷 Foto componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "n3_foto_post3", label: "📷 Foto componente nuovo installato", options: ["Scattata"] },
+        { id: "n3_foto_post4", label: "📷 Foto area di lavoro pulita", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto su WhatsApp gruppo tecnici entro fine giornata."]
+    }
+  ]
+},
+
+sopN4: {
+  title: "SOP-N4 — COMPRESSORI OIL-FREE ATLAS COPCO ZT/ZR",
+  subtitle: "ZT = raffreddamento aria · ZR = raffreddamento acqua — aria senza olio",
+  steps: [
+    {
+      title: "📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n4_foto_pre1", label: "📷 Foto macchina esterna (visione d'insieme)", options: ["Scattata"] },
+        { id: "n4_foto_pre2", label: "📷 Foto display con codice allarme", options: ["Scattata","Nessun allarme"] },
+        { id: "n4_foto_pre3", label: "📷 Foto targhetta macchina (modello, matricola, kW)", options: ["Scattata"] }
+      ],
+      decision: ["Foto obbligatorie. Inviare su WhatsApp gruppo tecnici.", "⚠ NON aprire il gruppo di compressione senza autorizzazione Atlas Copco — la garanzia decade."]
+    },
+    {
+      title: "PROBLEMA 1 — ALTA TEMPERATURA",
+      checks: [
+        { id: "n4_1_1", label: "Codice allarme sul pannello Elektronikon", input: "Codice allarme", type: "text" },
+        { id: "n4_1_2", label: "Temperatura ambiente locale (max 40°C per ZT/ZR)", input: "°C", type: "text" },
+        { id: "n4_1_3", label: "ZT: pulire radiatori olio e aria con aria compressa (delicatamente — alette fragili)", options: ["Fatto","N/A ZR"] },
+        { id: "n4_1_4", label: "ZT: ventilatore raffreddamento funzionante e senso rotazione corretto?", options: ["OK","Anomalia","N/A ZR"] },
+        { id: "n4_1_5", label: "ZR: temperatura acqua in entrata e portata sufficiente?", options: ["OK","Anomalia","N/A ZT"] },
+        { id: "n4_1_6", label: "ZR: circuito acqua non intasato o parzialmente chiuso?", options: ["OK","Intasato","N/A ZT"] },
+        { id: "n4_1_7", label: "Livello olio riduttore (spia laterale)", options: ["OK","Basso"] },
+        { id: "n4_1_8", label: "Filtro olio riduttore: intasato?", options: ["OK","Intasato"] }
+      ],
+      decision: ["ZT: pulizia radiatori è sempre il primo intervento — si sporcano rapidamente.", "ZR: depositi calcarei nel circuito acqua sono causa comune — descalcificare.", "Temperatura elemento oltre 110°C → spegnere subito — rischio danno permanente ai rivestimenti PTFE."]
+    },
+    {
+      title: "PROBLEMA 2 — PRESSIONE BASSA O PORTATA RIDOTTA",
+      checks: [
+        { id: "n4_2_1", label: "Filtri aria in ingresso: intasati? (indicatore sul pannello)", options: ["OK","Intasati"] },
+        { id: "n4_2_2", label: "Valvola di aspirazione: si apre completamente sotto carico?", options: ["OK","Parziale"] },
+        { id: "n4_2_3", label: "Pressione richiesta nei limiti nominali della macchina", input: "Richiesta/Max nominale bar", type: "text" }
+      ],
+      decision: ["Filtri intasati → sostituire subito.", "Pressione bassa con filtri OK e valvola aspirazione OK → possibile usura elementi.", "NON intervenire sugli elementi → contattare Polimanti (Atlas Copco): 335 779 5733"]
+    },
+    {
+      title: "PROBLEMA 3 — OLIO NELL'ARIA (GRAVISSIMO)",
+      isStop: true,
+      checks: [
+        { id: "n4_3_1", label: "Conferma: presenza olio nell'aria compressa in uscita", options: ["Confermato"] }
+      ],
+      decision: [
+        "BLOCCO IMMEDIATO DELLA MACCHINA — non rimettere in funzione.",
+        "Queste macchine producono aria oil-free per applicazioni critiche (alimentare, farmaceutico, verniciatura).",
+        "Contaminazione olio può causare danni enormi al processo produttivo del cliente.",
+        "Contattare SUBITO Polimanti (Tecnico Atlas Copco): 335 779 5733",
+        "Contattare Lorenzo: 349 833 5185"
+      ]
+    },
+    {
+      title: "MANUTENZIONE PROGRAMMATA ZT/ZR",
+      checks: [
+        { id: "n4_4_1", label: "Ogni 2.000 ore: filtro aria + filtro olio riduttore + olio riduttore", input: "Ore attuali", type: "text" },
+        { id: "n4_4_2", label: "Tipo olio riduttore: ROTO-Xtend Fluid Atlas Copco — NON altri oli", input: "Litri caricati", type: "text" },
+        { id: "n4_4_3", label: "Ogni 4.000 ore: cinghie (se presenti) + controllo cuscinetti + verifica tenute", options: ["Eseguito","Non dovuto"] },
+        { id: "n4_4_4", label: "Ogni 8.000 ore: revisione completa elementi (solo Atlas Copco o autorizzati)", options: ["Eseguito","Non dovuto"] },
+        { id: "n4_4_5", label: "Reset contaore manutenzione sul pannello Elektronikon", options: ["Eseguito"] }
+      ],
+      decision: ["Usare SEMPRE ricambi originali Atlas Copco per gli elementi.", "Per revisione elementi (8.000h) contattare Polimanti: 335 779 5733"]
+    },
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "n4_foto_post1", label: "📷 Foto macchina esterna dopo intervento", options: ["Scattata"] },
+        { id: "n4_foto_post2", label: "📷 Foto filtri/componenti vecchi rimossi", options: ["Scattata","N/A"] },
+        { id: "n4_foto_post3", label: "📷 Foto componenti nuovi installati", options: ["Scattata","N/A"] },
+        { id: "n4_foto_post4", label: "📷 Foto area di lavoro pulita", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto su WhatsApp gruppo tecnici entro fine giornata."]
+    }
+,
+    {
+      title: "📷 FOTO POST-INTERVENTO — OBBLIGATORIE",
+      checks: [
+        { id: "sop11_foto_post1", label: "📷 Foto macchina esterna dopo l'intervento", options: ["Scattata"] },
+        { id: "sop11_foto_post2", label: "📷 Foto parte/componente vecchio rimosso", options: ["Scattata","N/A"] },
+        { id: "sop11_foto_post3", label: "📷 Foto parte/componente nuovo installato", options: ["Scattata","N/A"] },
+        { id: "sop11_foto_post4", label: "📷 Foto area di lavoro pulita e in ordine", options: ["Scattata"] }
+      ],
+      decision: ["Inviare tutte le foto (pre + post) su WhatsApp gruppo tecnici entro fine giornata.", "Senza foto complete l'intervento non è considerato chiuso."]
+    }
+    ]
+},
 }; // fine SOPS
 
 // ══════════════════════════════════════════════════════════
@@ -1579,6 +2137,15 @@ let stepCompleted = []; // bool per step
 const MANUALI = {
 man1: { title: "🔧 MANUTENZIONE ORDINARIA", subtitle: "Intervento programmato", color: "#059669",
   steps: [
+    {
+      title: "A0 — 📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      sop: ["Foto obbligatorie prima di toccare qualsiasi cosa.", "Inviare su WhatsApp gruppo tecnici prima di iniziare."],
+      checks: [
+        {id:"man1_foto_pre1",label:"📷 Foto macchina esterna (visione d'insieme)"},
+        {id:"man1_foto_pre2",label:"📷 Foto zona specifica di intervento"},
+        {id:"man1_foto_pre3",label:"📷 Foto targhetta macchina (matricola, modello, ore)"}
+      ]
+    },
     { title: "A — PREPARAZIONE INTERVENTO", sop: ["Se materiali non disponibili → NON partire: avvisa Francesca DF e riprogramma.","Controlla sempre le ultime note su Zoho prima di arrivare."],
       checks: [{id:"m1_1",label:"Verificare ordine di lavoro e confermare appuntamento"},{id:"m1_2",label:"Caricare furgone: filtri, olio, kit revisione",note:"Verifica Zoho"},{id:"m1_3",label:"Portare strumentazione: manometro, multimetro, analizzatore perdite"},{id:"m1_4",label:"DPI: guanti, occhiali, scarpe antinfortunistiche"}]},
     { title: "B — ARRIVO E ISPEZIONE VISIVA", sop: ["Perdite gravi o temperatura fuori range → BLOCCA, fotografa, avvisa Lorenzo.","Non riavviare macchine anomale senza autorizzazione."],
@@ -1592,6 +2159,15 @@ man1: { title: "🔧 MANUTENZIONE ORDINARIA", subtitle: "Intervento programmato"
   ]},
 man2: { title: "🚨 INTERVENTO D'URGENZA", subtitle: "Produzione ferma · priorità massima", color: "#DC2626",
   steps: [
+    {
+      title: "A0 — 📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      sop: ["Foto obbligatorie prima di toccare qualsiasi cosa.", "Inviare su WhatsApp gruppo tecnici prima di iniziare."],
+      checks: [
+        {id:"man2_foto_pre1",label:"📷 Foto macchina esterna (visione d'insieme)"},
+        {id:"man2_foto_pre2",label:"📷 Foto zona specifica di intervento"},
+        {id:"man2_foto_pre3",label:"📷 Foto targhetta macchina (matricola, modello, ore)"}
+      ]
+    },
     { title: "A — RICEZIONE CHIAMATA", sop: ["Cliente SENZA backup → attiva protocollo noleggio di emergenza.","Verifica disponibilità noleggio CLA prima di partire — contatta Francesca DF.","MAI promettere meno di 1 ora senza certezza."],
       checks: [{id:"m2_1",label:"Sintomi esatti: cosa fa/non fa la macchina",note:"Sintomi"},{id:"m2_2",label:"Codici errore sul display",note:"Codice"},{id:"m2_3",label:"Quando è iniziato il problema"},{id:"m2_4",label:"Ultima manutenzione effettuata",note:"Data"},{id:"m2_5",label:"Compressori di backup disponibili?",note:"SI/NO"}]},
     { title: "B — PREPARAZIONE RAPIDA (MAX 20 MIN)", sop: ["Kit urgenza SEMPRE pronto — controllato ogni lunedì mattina.","Pezzo mancante dal furgone → parti lo stesso, chiama Francesca."],
@@ -1605,6 +2181,15 @@ man2: { title: "🚨 INTERVENTO D'URGENZA", subtitle: "Produzione ferma · prior
   ]},
 man3: { title: "🔄 SOSTITUZIONE COMPRESSORE", subtitle: "Programmato · min 2 tecnici", color: "#2563EB",
   steps: [
+    {
+      title: "A0 — 📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      sop: ["Foto obbligatorie prima di toccare qualsiasi cosa.", "Inviare su WhatsApp gruppo tecnici prima di iniziare."],
+      checks: [
+        {id:"man3_foto_pre1",label:"📷 Foto macchina esterna (visione d'insieme)"},
+        {id:"man3_foto_pre2",label:"📷 Foto zona specifica di intervento"},
+        {id:"man3_foto_pre3",label:"📷 Foto targhetta macchina (matricola, modello, ore)"}
+      ]
+    },
     { title: "A — PREPARAZIONE (GIORNO PRIMA)", sop: ["Nuova macchina DEVE essere testata in officina prima.","Verifica voltaggio impianto cliente: 230V o 400V?","Comunica fermo produzione stimato con almeno 24h di anticipo."],
       checks: [{id:"m3_1",label:"Confermare data, ora, referente tecnico con cliente"},{id:"m3_2",label:"Nuova macchina in sede e testata"},{id:"m3_3",label:"Parametri corretti (pressione, portata, voltaggio)",note:"bar/l/min"},{id:"m3_4",label:"Materiali pronti: raccordi, tubi, cavi"},{id:"m3_5",label:"Muletto/transpallet disponibile se peso >100kg",note:"kg"},{id:"m3_6",label:"Almeno 2 tecnici confermati",note:"Nomi tecnici"}]},
     { title: "B — SMONTAGGIO MACCHINA ESISTENTE", sop: ["Foto PRIMA della disconnessione: obbligatorie.","Macchina rimossa: rimane al cliente o CLA la ritira?","Se CLA la ritira: registra su Zoho come 'usato da valutare'."],
@@ -1618,6 +2203,15 @@ man3: { title: "🔄 SOSTITUZIONE COMPRESSORE", subtitle: "Programmato · min 2 
   ]},
 man4: { title: "🏗 INSTALLAZIONE IMPIANTO ARIA", subtitle: "⚠ Lavoro in quota · DPI anticaduta · min 2 tecnici", color: "#D97706",
   steps: [
+    {
+      title: "A0 — 📷 FOTO PRE-INTERVENTO — OBBLIGATORIE",
+      sop: ["Foto obbligatorie prima di toccare qualsiasi cosa.", "Inviare su WhatsApp gruppo tecnici prima di iniziare."],
+      checks: [
+        {id:"man4_foto_pre1",label:"📷 Foto macchina esterna (visione d'insieme)"},
+        {id:"man4_foto_pre2",label:"📷 Foto zona specifica di intervento"},
+        {id:"man4_foto_pre3",label:"📷 Foto targhetta macchina (matricola, modello, ore)"}
+      ]
+    },
     { title: "A — SOPRALLUOGO (OBBLIGATORIO)", sop: ["NESSUNA installazione parte senza sopralluogo documentato.","Schema tecnico approvato da Lorenzo prima di ordinare i materiali.","Locale umido o estremo → segnala a Lorenzo."],
       checks: [{id:"m4_1",label:"Sopralluogo effettuato e misure raccolte",note:"Planimetria allegata"},{id:"m4_2",label:"Percorso tubazioni verificato (ostacoli, attraversamenti)"},{id:"m4_3",label:"Punto allaccio elettrico idoneo",note:"V / A disponibili"},{id:"m4_4",label:"Portata d'aria richiesta verificata",note:"l/min"},{id:"m4_5",label:"Foto locale compressori e percorso impianto"},{id:"m4_6",label:"Schema tecnico redatto o verificato",note:"allegato"}]},
     { title: "B — PREPARAZIONE E MATERIALI", sop: ["Trabattello DEVE essere omologato e controllato.","MAI lavorare in quota da soli. Nessuna eccezione.","Verifica che il cliente abbia liberato l'area."],
