@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLA Compressori — SOP Tecnico</title>
+<style>
+  :root {
+    --navy: #1A2F4B;
+    --blue: #2563EB;
+    --steel: #64748B;
+    --lblue: #EFF6FF;
+    --green: #059669;
+    --lgreen: #ECFDF5;
+    --orange: #D97706;
+    --lorange: #FFFBEB;
+    --red: #DC2626;
+    --lred: #FEF2F2;
+    --white: #FFFFFF;
+    --gray: #F1F5F9;
+    --border: #CBD5E1;
+    --text: #0F172A;
+    --text2: #475569;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--gray);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .header-logo {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .header-logo span { color: var(--blue); }
+  .header-subtitle { color: #94A3B8; font-size: 11px; margin-top: 2px; }
+  .header-tonino {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header-tonino:active { opacity: 0.8; }
+
+  /* SCHERMATA HOME */
+  .home {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .home-title {
+    text-align: center;
+    padding: 24px 0 8px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--navy);
+  }
+  .home-sub {
+    text-align: center;
+    color: var(--steel);
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .sop-group-label {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--steel);
+    padding: 0 4px 8px;
+    margin-top: 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+
+  .sop-card {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .sop-card:active { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+  .sop-icon {
+    font-size: 26px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .sop-icon.urgent { background: var(--lred); }
+  .sop-icon.normal { background: var(--lblue); }
+  .sop-card-text h3 { font-size: 15px; font-weight: bold; color: var(--text); }
+  .sop-card-text p { font-size: 12px; color: var(--steel); margin-top: 2px; }
+  .sop-card-arrow { margin-left: auto; color: var(--steel); font-size: 18px; }
+
+  /* SCHERMATA SOP */
+  .sop-screen { display: none; }
+  .sop-screen.active { display: block; }
+
+  .sop-header {
+    background: var(--navy);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-back {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .sop-header-info h2 {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .sop-header-info p { color: #94A3B8; font-size: 11px; margin-top: 2px; }
+
+  /* BARRA PROGRESSO */
+  .progress-bar {
+    background: rgba(255,255,255,0.1);
+    height: 4px;
+  }
+  .progress-fill {
+    background: var(--blue);
+    height: 4px;
+    transition: width 0.3s ease;
+  }
+
+  /* DATI INTESTAZIONE INTERVENTO */
+  .intervento-form {
+    background: white;
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .intervento-form h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--steel);
+    margin-bottom: 12px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--steel);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background: var(--gray);
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: white;
+  }
+
+  /* STEP CONTAINER */
+  .steps-container { padding: 16px; max-width: 600px; margin: 0 auto; }
+
+  /* SINGOLO STEP */
+  .step-panel {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+  }
+
+  .step-header {
+    background: var(--navy);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-num {
+    background: var(--blue);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .step-title {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .step-done-badge {
+    margin-left: auto;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+  }
+  .step-done-badge.visible { display: flex; }
+
+  /* CHECK ITEMS */
+  .check-list { padding: 0; }
+  .check-item {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--gray);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .check-box {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    margin-top: 1px;
+    background: white;
+  }
+  .check-box.checked {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .check-label {
+    font-size: 14px;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.4;
+  }
+  .check-input-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .check-input {
+    flex: 1;
+    min-width: 140px;
+    padding: 7px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    background: var(--gray);
+    color: var(--text);
+  }
+  .check-input:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: white;
+  }
+  .check-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+    margin-left: 36px;
+  }
+  .opt-btn {
+    padding: 6px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    background: white;
+    color: var(--text2);
+    transition: all 0.15s;
+  }
+  .opt-btn.selected-ok {
+    background: var(--lgreen);
+    border-color: var(--green);
+    color: var(--green);
+    font-weight: bold;
+  }
+  .opt-btn.selected-bad {
+    background: var(--lred);
+    border-color: var(--red);
+    color: var(--red);
+    font-weight: bold;
+  }
+  .opt-btn.selected-warn {
+    background: var(--lorange);
+    border-color: var(--orange);
+    color: var(--orange);
+    font-weight: bold;
+  }
+
+  /* DECISION BOX */
+  .decision-box {
+    margin: 0 16px 16px;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border-left: 4px solid var(--blue);
+    background: var(--lblue);
+  }
+  .decision-box.stop {
+    border-color: var(--red);
+    background: var(--lred);
+  }
+  .decision-box-title {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .decision-box.stop .decision-box-title { color: var(--red); }
+  .decision-item {
+    font-size: 13px;
+    color: var(--text);
+    padding: 4px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .decision-item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: bold;
+  }
+  .decision-box.stop .decision-item::before { color: var(--red); }
+
+  /* PULSANTE AVANZA STEP */
+  .step-nav {
+    padding: 12px 16px 20px;
+    display: flex;
+    gap: 10px;
+  }
+  .btn-next {
+    flex: 1;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-next:disabled {
+    background: var(--border);
+    color: var(--steel);
+    cursor: not-allowed;
+  }
+  .btn-next.stop {
+    background: var(--red);
+  }
+  .btn-next.complete {
+    background: var(--green);
+  }
+
+  /* LOCK OVERLAY */
+  .step-locked {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .lock-notice {
+    background: var(--lorange);
+    border: 1px solid var(--orange);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--orange);
+    text-align: center;
+    margin: 0 16px 16px;
+    display: none;
+  }
+  .lock-notice.visible { display: block; }
+
+  /* MODALE TONINO */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+  }
+  .modal-icon { font-size: 48px; margin-bottom: 12px; }
+  .modal h3 { font-size: 20px; font-weight: bold; color: var(--navy); margin-bottom: 8px; }
+  .modal p { font-size: 14px; color: var(--steel); line-height: 1.5; margin-bottom: 20px; }
+  .modal-tel {
+    display: block;
+    background: var(--navy);
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .modal-close {
+    width: 100%;
+    background: var(--gray);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--text2);
+  }
+
+  /* RIEPILOGO FINALE */
+  .summary-screen {
+    display: none;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .summary-screen.active { display: block; }
+  .summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .summary-card h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--steel);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--gray);
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: var(--steel); }
+  .summary-value { font-weight: bold; color: var(--text); text-align: right; max-width: 60%; }
+  .btn-zoho {
+    width: 100%;
+    background: var(--navy);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .btn-restart {
+    width: 100%;
+    background: white;
+    color: var(--navy);
+    border: 2px solid var(--navy);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .home-screen { display: block; }
+  .home-screen.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER FISSO -->
+<div class="header">
+  <div>
+    <div class="header-logo">C.L.A. <span>COMPRESSORI</span></div>
+    <div class="header-subtitle">Sistema SOP Tecnico</div>
+  </div>
+  <button class="header-tonino" onclick="openTonino()">📞 Chiama Tonino</button>
+</div>
+
+<!-- HOME: SELEZIONE SOP -->
+<div class="home-screen" id="homeScreen">
+  <div class="home">
+    <div class="home-title">Cosa devi fare?</div>
+    <div class="home-sub">Seleziona l'area — ti guido passo per passo</div>
+
+    <div class="sop-group-label">🔩 COMPRESSORI A VITE</div>
+
+    <div class="sop-card" onclick="startMAN('man1')">
+      <div class="sop-icon normal">🔧</div>
+      <div class="sop-card-text"><h3>Manutenzione ordinaria</h3><p>Intervento programmato · checklist A→E</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startMAN('man2')">
+      <div class="sop-icon urgent">🚨</div>
+      <div class="sop-card-text"><h3>Intervento d'urgenza</h3><p>Produzione ferma · priorità massima</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startMAN('man3')">
+      <div class="sop-icon normal">🔄</div>
+      <div class="sop-card-text"><h3>Sostituzione compressore</h3><p>Programmato · min 2 tecnici</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
+    <div class="sop-group-label" style="margin-top:16px">⚠ Diagnostica compressori a vite</div>
+
+    <div class="sop-card" onclick="startSOP('sop1')">
+      <div class="sop-icon urgent">🌡️</div>
+      <div class="sop-card-text"><h3>Alta temperatura</h3><p>Allarme overtemperature · si spegne per calore</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop2')">
+      <div class="sop-icon urgent">⚡</div>
+      <div class="sop-card-text"><h3>Problema di corrente / inverter</h3><p>Allarme corrente · va in sicurezza</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop3')">
+      <div class="sop-icon urgent">💨</div>
+      <div class="sop-card-text"><h3>Mancanza d'aria / pressione bassa</h3><p>Funziona ma non arriva la pressione</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop4')">
+      <div class="sop-icon normal">🛢️</div>
+      <div class="sop-card-text"><h3>Olio dal filtro aria</h3><p>Olio nebulizzato · valvola aspirazione</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop7')">
+      <div class="sop-icon normal">💧</div>
+      <div class="sop-card-text"><h3>Perdite d'olio</h3><p>Olio che cola da basamento o raccordi</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop10')">
+      <div class="sop-icon normal">🔁</div>
+      <div class="sop-card-text"><h3>Cicla troppo spesso</h3><p>Accensioni e spegnimenti ravvicinati</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop5')">
+      <div class="sop-icon urgent">🔌</div>
+      <div class="sop-card-text"><h3>Macchina non parte</h3><p>Premo ON ma non succede nulla</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startSOP('sop6')">
+      <div class="sop-icon normal">🔊</div>
+      <div class="sop-card-text"><h3>Rumore anomalo</h3><p>Battito · fischio · vibrazione insolita</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
+    <div class="sop-group-label" style="margin-top:20px">❄️ ESSICCATORI</div>
+
+    <div class="sop-card" onclick="startSOP('sop9')">
+      <div class="sop-icon normal">❄️</div>
+      <div class="sop-card-text"><h3>Essiccatore non asciuga</h3><p>Aria umida · condensa eccessiva in uscita</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
+    <div class="sop-group-label" style="margin-top:20px">🏗 ACCESSORI E IMPIANTI</div>
+
+    <div class="sop-card" onclick="startSOP('sop8')">
+      <div class="sop-icon normal">💧</div>
+      <div class="sop-card-text"><h3>Scarico condensa</h3><p>Non scarica mai · oppure scarica in continuo</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+    <div class="sop-card" onclick="startMAN('man4')">
+      <div class="sop-icon urgent">🏗</div>
+      <div class="sop-card-text"><h3>Installazione impianto aria</h3><p>⚠ Lavoro in quota · DPI anticaduta · min 2 tecnici</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
+    <div class="sop-group-label" style="margin-top:20px">🚧 IN SVILUPPO — prossimamente</div>
+    <div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:13px;color:#92400E;line-height:1.6">
+      Le seguenti SOP sono in preparazione:<br>
+      • Riparazione compressore a pistoni (problemi principali)<br>
+      • Esce aria dalla valvola di aspirazione da fermo in continuo<br>
+      • Non carica aria: elettrovalvola o kit valvola aspirazione<br>
+      • Riparazione compressori oil-free e relativi problemi
+    </div>
+
+    <div class="sop-group-label" style="margin-top:20px">📞 NUMERI UTILI</div>
+    <div style="background:white;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;margin-bottom:20px">
+      <div style="background:#1A2F4B;padding:10px 16px">
+        <div style="color:white;font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:.5px">Contatti di riferimento</div>
+      </div>
+      <div id="numeri-utili"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCHERMATA SOP ATTIVA -->
+<div class="sop-screen" id="sopScreen">
+  <div class="sop-header">
+    <button class="btn-back" onclick="goHome()">← Home</button>
+    <div class="sop-header-info">
+      <h2 id="sopTitle">SOP-1</h2>
+      <p id="sopSubtitle">Step 1 di 7</p>
+    </div>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+
+  <!-- FORM DATI INTERVENTO (solo step 0) -->
+  <div id="stepZero">
+    <div class="intervento-form">
+      <h3>Dati intervento</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Cliente</label>
+          <input type="text" id="fCliente" placeholder="Nome azienda">
+        </div>
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="fData">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tecnico</label>
+          <input type="text" id="fTecnico" placeholder="Nome tecnico">
+        </div>
+        <div class="form-group">
+          <label>Ore macchina</label>
+          <input type="text" id="fOre" placeholder="Es. 12500">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Marca / Modello / Matricola</label>
+          <input type="text" id="fMacchina" placeholder="Es. Atlas Copco GA11 — SN12345">
+        </div>
+      </div>
+    </div>
+    <div class="steps-container">
+      <div class="step-nav">
+        <button class="btn-next" onclick="beginSOP()">Inizia diagnosi →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS DINAMICI -->
+  <div id="stepsArea" style="display:none">
+    <div class="steps-container" id="stepsContainer"></div>
+  </div>
+</div>
+
+
+
+<!-- SCHERMATA MANUALE OPERATIVO -->
+<div class="sop-screen" id="manScreen">
+  <div class="sop-header" id="manHeader">
+    <button class="btn-back" onclick="goHome()">← Home</button>
+    <div class="sop-header-info">
+      <h2 id="manTitle">Manutenzione</h2>
+      <p id="manSubtitle">Step 1 di 5</p>
+    </div>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="manProgressFill" style="width:0%"></div>
+  </div>
+
+  <div id="manStepZero">
+    <div class="intervento-form">
+      <h3>Dati intervento</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Cliente</label>
+          <input type="text" id="mfCliente" placeholder="Nome azienda">
+        </div>
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="mfData">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tecnico/i</label>
+          <input type="text" id="mfTecnico" placeholder="Nome tecnico">
+        </div>
+        <div class="form-group">
+          <label>Ore macchina</label>
+          <input type="text" id="mfOre" placeholder="Es. 12500">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Marca / Modello / Matricola</label>
+          <input type="text" id="mfMacchina" placeholder="Es. Atlas Copco GA11 — SN12345">
+        </div>
+      </div>
+    </div>
+    <div class="steps-container">
+      <div class="step-nav">
+        <button class="btn-next" onclick="beginMAN()">Inizia checklist →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="manStepsArea" style="display:none">
+    <div class="steps-container" id="manStepsContainer"></div>
+  </div>
+</div>
+
+<!-- RIEPILOGO FINALE -->
+<div class="summary-screen" id="summaryScreen">
+  <div class="summary-card">
+    <div style="text-align:center;padding:16px 0">
+      <div style="font-size:48px">✅</div>
+      <h2 style="font-size:20px;color:var(--navy);margin:8px 0">Intervento completato</h2>
+      <p style="font-size:13px;color:var(--steel)">Aggiorna Zoho con i dati qui sotto</p>
+    </div>
+    <h3>Riepilogo</h3>
+    <div id="summaryContent"></div>
+  </div>
+  <div class="summary-card">
+    <h3>Dati registrati</h3>
+    <div id="summaryData"></div>
+  </div>
+  <button class="btn-pdf" onclick="stampaPDF()" style="width:100%;background:#1A2F4B;color:white;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer;margin-bottom:10px;">📄 Scarica PDF intervento</button>
+<button class="btn-zoho" onclick="alert('Apri Zoho CRM e inserisci i dati sopra')" style="width:100%;background:#2563EB;color:white;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:bold;cursor:pointer;margin-bottom:10px;">📋 Apri Zoho CRM</button>
+  <button class="btn-restart" onclick="goHome()">← Torna alla Home</button>
+</div>
+
+<!-- MODALE TONINO -->
+<div class="modal-overlay" id="toninoModal">
+  <div class="modal">
+    <div class="modal-icon">📞</div>
+    <h3>Chiama Tonino</h3>
+    <p>Se non riesci a risolvere o il problema è fuori dalla tua portata — chiama subito. Non insistere da solo.</p>
+    <a href="tel:+393404102949" class="modal-tel">Tonino — +39 340 410 2949</a>
+    <button class="modal-close" onclick="closeTonino()">Annulla</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// DATABASE SOP
+// ══════════════════════════════════════════════════════════
+const SOPS = {
+
+sop1: {
+  title: "SOP-1 — ALTA TEMPERATURA",
+  subtitle: "Cause multiple · segui l'ordine",
+  steps: [
+    {
+      title: "VERIFICA AMBIENTE E VENTILAZIONE",
+      checks: [
+        { id: "s1_1", label: "Temperatura ambiente locale compressori", input: "°C", type: "text" },
+        { id: "s1_2", label: "Spazio libero attorno alla macchina sufficiente (varia per tipo)", options: ["OK","Insufficiente"] },
+        { id: "s1_3", label: "Locale ventilato e senza altre fonti di calore", options: ["OK","Problema"] }
+      ],
+      decision: [
+        "Locale >40°C o ventilazione assente → CAUSA PROBABILE. Migliora l'areazione e ritesta.",
+        "Ambiente OK → procedi allo STEP 2."
+      ]
+    },
+    {
+      title: "VERIFICA RADIATORE / SCAMBIATORE",
+      checks: [
+        { id: "s1_4", label: "Radiatore pulito (alette non ostruite da polvere/olio)", options: ["Pulito","Sporco"] },
+        { id: "s1_5", label: "Ventola di raffreddamento funzionante e gira liberamente", options: ["OK","Anomalia"] },
+        { id: "s1_6", label: "Senso rotazione ventola corretto (solo motore trifase)", options: ["Corretto","Invertito","N/A"] }
+      ],
+      decision: [
+        "Radiatore sporco → pulizia con aria compressa o lavaggio. Poi ritesta.",
+        "Ventola non gira o invertita → CAUSA QUASI CERTA. Risolvi e ritesta.",
+        "Tutto OK → procedi allo STEP 3."
+      ]
+    },
+    {
+      title: "VERIFICA OLIO LUBRIFICANTE",
+      checks: [
+        { id: "s1_7", label: "Livello olio corretto (non basso)", options: ["OK","Basso"] },
+        { id: "s1_8", label: "Tipo olio corretto per questa macchina", input: "Tipo olio presente", type: "text" },
+        { id: "s1_9", label: "Olio scaduto / esausto (colore scuro, odore bruciato)", options: ["OK","Da sostituire"] }
+      ],
+      decision: [
+        "Olio basso → rabboccare. Indaga perdita o consumo anomalo.",
+        "Olio errato o esausto → SOSTITUIRE SUBITO. Causa molto comune.",
+        "Olio OK → procedi allo STEP 4."
+      ]
+    },
+    {
+      title: "VERIFICA FILTRI E VALVOLA TERMOSTATICA",
+      checks: [
+        { id: "s1_10", label: "Filtro olio: data ultima sostituzione", input: "Data sostituzione", type: "text" },
+        { id: "s1_11", label: "Filtro separatore olio-aria (ostruito o fine vita?)", options: ["OK","Da sostituire"] },
+        { id: "s1_12", label: "TEST AL TATTO: tocca il tubo verso il radiatore", options: ["Caldo","Tiepido"] },
+        { id: "s1_13", label: "TEST AL TATTO: tocca il corpo del radiatore", options: ["Caldo","Freddo"] }
+      ],
+      decision: [
+        "Tubo CALDO + radiatore FREDDO → valvola termostatica NON apre. L'olio non si raffredda. Sostituire.",
+        "Tubo tiepido + radiatore caldo → valvola OK.",
+        "Filtro separatore esausto → sostituire. Causa frequente.",
+        "Tutto OK → procedi allo STEP 5."
+      ]
+    },
+    {
+      title: "VERIFICA GRUPPO VITE (AMPERAGGIO)",
+      checks: [
+        { id: "s1_14", label: "Amperaggio nominale dalla targhetta motore", input: "A (targa)", type: "text" },
+        { id: "s1_15", label: "Amperaggio reale con pinza amperometrica a regime", input: "A (reale)", type: "text" },
+        { id: "s1_16", label: "Rumore o vibrazioni dal gruppo vite", options: ["Nessuno","Leggero","Evidente"] }
+      ],
+      decision: [
+        "Amperaggio REALE > TARGA → il gruppo vite ha preso gioco. Non riparabile sul campo: chiama Tonino.",
+        "Importante: nelle fasi iniziali non si sente rumore, ma causa già calore e problemi di corrente.",
+        "Amperaggio OK e nessun rumore → procedi allo STEP 6."
+      ]
+    },
+    {
+      title: "VERIFICA SONDA TEMPERATURA / CENTRALINA",
+      checks: [
+        { id: "s1_17", label: "Osserva la lettura temperatura sulla centralina per 2-3 minuti", options: ["Stabile","Oscilla a caso"] },
+        { id: "s1_18", label: "Macchina in allarme ma componenti al tatto sembrano freddi/normali", options: ["Coerente","Incoerente"] }
+      ],
+      decision: [
+        "Lettura che salta (es. 70° → 120° → 40°) → sonda starata o centralina guasta. FALSO ALLARME.",
+        "Non sostituire parti meccaniche se la lettura è incoerente: è elettronico, non termico.",
+        "Segnala a Tonino per sostituzione sonda o centralina."
+      ]
+    },
+    {
+      title: "NESSUNA CAUSA TROVATA — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Possibile usura interna del gruppo vite non rilevabile o problema elettronico.",
+        "NON far funzionare la macchina in alta temperatura: rischio danno irreversibile.",
+        "Prima di chiamare: annota TUTTI i valori misurati negli step precedenti."
+      ]
+    }
+  ]
+},
+
+sop2: {
+  title: "SOP-2 — PROBLEMA DI CORRENTE",
+  subtitle: "Tipico su inverter · sbalzi di rete",
+  steps: [
+    {
+      title: "VERIFICA TIPO MACCHINA E SINTOMO",
+      checks: [
+        { id: "s2_1", label: "La macchina ha inverter? (controlla targa/pannello)", options: ["Sì, inverter","No, fisso"] },
+        { id: "s2_2", label: "Codice errore sul display", input: "Codice errore", type: "text" },
+        { id: "s2_3", label: "Il blocco è avvenuto in modo:", options: ["Improvviso","Progressivo"] }
+      ],
+      decision: [
+        "Inverter + blocco improvviso → probabile sbalzo di rete. Vai allo STEP 2.",
+        "Non inverter → problema meccanico/elettrico classico. Vai allo STEP 3."
+      ]
+    },
+    {
+      title: "QUALITÀ ALIMENTAZIONE (SOLO INVERTER)",
+      checks: [
+        { id: "s2_4", label: "Tensione rete su L1", input: "L1 (V)", type: "text" },
+        { id: "s2_5", label: "Tensione rete su L2", input: "L2 (V)", type: "text" },
+        { id: "s2_6", label: "Tensione rete su L3", input: "L3 (V)", type: "text" },
+        { id: "s2_7", label: "Squilibrio tra fasi (max accettabile 3%)", input: "Squilibrio %", type: "text" },
+        { id: "s2_8", label: "Il cliente ha acceso/spento macchinari pesanti di recente?", options: ["Sì","No"] },
+        { id: "s2_9", label: "Filtro EMC / soppressore disturbi presente in entrata?", options: ["Presente","Assente"] }
+      ],
+      decision: [
+        "Squilibrio >3% o sbalzi confermati → il filtro ha protetto la macchina. CAUSA QUASI CERTA.",
+        "Reset e riavvio: se riparte normalmente era transitorio.",
+        "Si ripete più volte → segnala al cliente: serve controllo impianto elettrico generale.",
+        "Valuta con Lorenzo proposta stabilizzatore dedicato."
+      ]
+    },
+    {
+      title: "VERIFICA ASSORBIMENTO E PARTI MECCANICHE",
+      checks: [
+        { id: "s2_10", label: "Corrente a vuoto vs nominale targa", input: "Assorbita / Nominale (A)", type: "text" },
+        { id: "s2_11", label: "Motore gira libero a mano (SPENTO E SEZIONATO)", options: ["Libero","Attrito anomalo"] },
+        { id: "s2_12", label: "Cuscinetti motore (rumore / gioco)", options: ["OK","Anomalia"] },
+        { id: "s2_13", label: "Cinghie troppo tese?", options: ["OK","Troppo tese"] }
+      ],
+      decision: [
+        "Assorbimento alto + attrito anomalo → guasto meccanico interno (cuscinetti/gruppo vite).",
+        "Cinghie troppo tese → allentare a tensione corretta e ritesta.",
+        "Tutto OK ma blocco persiste → vai allo STEP 4."
+      ]
+    },
+    {
+      title: "PROBLEMA PERSISTE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Possibile guasto scheda inverter o sensori di corrente.",
+        "NON forzare reset ripetuti: rischi di danneggiare ulteriormente la scheda.",
+        "Annota codice errore esatto e valori tensione/corrente prima di chiamare."
+      ]
+    }
+  ]
+},
+
+sop3: {
+  title: "SOP-3 — MANCANZA D'ARIA",
+  subtitle: "Macchina funziona ma pressione bassa",
+  steps: [
+    {
+      title: "PROBLEMA SULLA MACCHINA O SULL'IMPIANTO?",
+      checks: [
+        { id: "s3_1", label: "Pressione diretta all'uscita del compressore", input: "bar (uscita)", type: "text" },
+        { id: "s3_2", label: "Pressione ai punti di utilizzo del cliente", input: "bar (utilizzo)", type: "text" },
+        { id: "s3_3", label: "Differenza significativa tra i due valori (>1 bar)?", options: ["Sì","No"] }
+      ],
+      decision: [
+        "Pressione BASSA già in uscita → problema sulla macchina. Vai allo STEP 2.",
+        "Pressione OK in uscita ma bassa agli utilizzi → problema sull'impianto. Vai allo STEP 4."
+      ]
+    },
+    {
+      title: "VERIFICA FILTRI (PROBLEMA MACCHINA)",
+      checks: [
+        { id: "s3_4", label: "Filtro aria in entrata ostruito / sporco", options: ["OK","Ostruito"] },
+        { id: "s3_5", label: "Filtro separatore olio-aria ostruito", options: ["OK","Ostruito"] }
+      ],
+      decision: [
+        "Filtro ostruito → SOSTITUIRE e ritestare subito. Causa molto probabile.",
+        "Filtri OK → procedi allo STEP 3."
+      ]
+    },
+    {
+      title: "VALVOLE E COMPONENTI INTERNI",
+      checks: [
+        { id: "s3_6", label: "Valvola di aspirazione: apertura e tenuta", options: ["OK","Da revisionare"] },
+        { id: "s3_7", label: "Corrente a bobina e solenoide presente?", options: ["OK","Assente"] },
+        { id: "s3_8", label: "Valvola di minima pressione: si apre correttamente?", options: ["OK","Bloccata"] },
+        { id: "s3_9", label: "Perdite su raccordi o tubi flessibili interni", options: ["OK","Perdita rilevata"] },
+        { id: "s3_10", label: "Sospetta usura gruppo vite/pistoni (macchina con molte ore)?", options: ["OK","Sospetta"] }
+      ],
+      decision: [
+        "Valvola aspirazione difettosa → revisione (vedi anche SOP-4 se c'è olio).",
+        "Valvola minima bloccata → sostituire o revisionare.",
+        "Usura interna sospetta → valuta con Tonino: riparazione o sostituzione?"
+      ]
+    },
+    {
+      title: "VERIFICA IMPIANTO CLIENTE",
+      checks: [
+        { id: "s3_11", label: "Test perdite con spray sulle tubazioni", options: ["OK","Perdite trovate"] },
+        { id: "s3_12", label: "Diametro tubazioni adeguato alla portata", input: "mm", type: "text" },
+        { id: "s3_13", label: "Filtri / essiccatori a valle intasati?", options: ["OK","Intasati"] },
+        { id: "s3_14", label: "Troppi utilizzi aperti contemporaneamente?", options: ["No","Sì"] }
+      ],
+      decision: [
+        "Perdite trovate → ripara le giunzioni. Causa comune e sottovalutata.",
+        "Impianto sottodimensionato → segnala a Lorenzo: opportunità commerciale."
+      ]
+    },
+    {
+      title: "PROBLEMA PERSISTE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Possibile usura interna grave del gruppo compressione.",
+        "Annota tutti i valori di pressione rilevati prima di chiamare."
+      ]
+    }
+  ]
+},
+
+sop4: {
+  title: "SOP-4 — OLIO DAL FILTRO ARIA",
+  subtitle: "Valvola di aspirazione da revisionare",
+  steps: [
+    {
+      title: "CONFERMA SINTOMO",
+      checks: [
+        { id: "s4_1", label: "Olio visibile sul filtro aria o nelle vicinanze", options: ["Confermato","Non confermato"] },
+        { id: "s4_2", label: "Il fenomeno si nota con la macchina:", options: ["Da ferma","Da accesa","Entrambe"] },
+        { id: "s4_3", label: "Quantità di olio:", options: ["Leggera traccia","Nebulizzazione evidente"] }
+      ],
+      decision: [
+        "Sintomo confermato → causa nota: VALVOLA DI ASPIRAZIONE da revisionare.",
+        "Procedi allo STEP 2 senza ulteriori verifiche."
+      ]
+    },
+    {
+      title: "VERIFICA PRIMA DI INTERVENIRE",
+      checks: [
+        { id: "s4_4", label: "Livello olio nel basamento", options: ["Corretto","Eccessivo"] },
+        { id: "s4_5", label: "Se eccessivo: scarica l'olio in eccesso prima di procedere", options: ["Fatto","Non necessario"] },
+        { id: "s4_6", label: "Ore macchina e data ultima revisione valvola", input: "Ore / Ultima revisione", type: "text" }
+      ],
+      decision: [
+        "Il sovrariempimento aggrava il fenomeno ma la valvola resta la causa primaria.",
+        "Annota le ore: utile per programmare future revisioni su questo modello."
+      ]
+    },
+    {
+      title: "REVISIONE VALVOLA DI ASPIRAZIONE",
+      checks: [
+        { id: "s4_7", label: "Macchina spenta, sezionata, pressione scaricata a ZERO", options: ["Confermato"] },
+        { id: "s4_8", label: "Valvola di aspirazione smontata", options: ["Fatto"] },
+        { id: "s4_9", label: "Ispezione componenti interni (membrana, molla, sede)", options: ["Usura lieve","Usura grave","Rottura"] },
+        { id: "s4_10", label: "Tutti i componenti puliti accuratamente", options: ["Fatto"] },
+        { id: "s4_11", label: "Kit revisione sostituito (membrana/guarnizioni)", input: "Kit utilizzato", type: "text" },
+        { id: "s4_12", label: "Valvola rimontata con coppia di serraggio corretta", options: ["Fatto"] }
+      ],
+      decision: [
+        "Usura lieve → kit di revisione sufficiente.",
+        "Usura grave o rottura → SOSTITUZIONE VALVOLA COMPLETA.",
+        "Verifica disponibilità kit a magazzino PRIMA di smontare."
+      ]
+    },
+    {
+      title: "TEST POST-REVISIONE",
+      checks: [
+        { id: "s4_13", label: "Macchina riavviata e in funzione per almeno 20 minuti", options: ["Fatto"] },
+        { id: "s4_14", label: "Nebulizzazione olio dal filtro aria", options: ["Risolta","Persiste"] },
+        { id: "s4_15", label: "Pressione e funzionamento normali", input: "bar", type: "text" }
+      ],
+      decision: [
+        "Fenomeno risolto → chiudi intervento. Registra ricambi su Zoho.",
+        "Persiste → vai allo STEP 5."
+      ]
+    },
+    {
+      title: "PERSISTE DOPO REVISIONE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Possibile causa secondaria (usura tenute interne).",
+        "Non procedere con ulteriori smontaggi senza supporto diagnostico."
+      ]
+    }
+  ]
+},
+
+sop5: {
+  title: "SOP-5 — MACCHINA NON PARTE",
+  subtitle: "Premo ON · nessuna risposta",
+  steps: [
+    {
+      title: "VERIFICA ALIMENTAZIONE GENERALE",
+      checks: [
+        { id: "s5_1", label: "Tensione a monte del quadro (misura con multimetro)", input: "V", type: "text" },
+        { id: "s5_2", label: "Interruttore generale / sezionatore in posizione ON", options: ["OK","Era OFF"] },
+        { id: "s5_3", label: "Altri macchinari del cliente funzionano? (escludi blackout)", options: ["Sì","No, blackout"] }
+      ],
+      decision: [
+        "Nessuna tensione a monte → PROBLEMA DELL'IMPIANTO CLIENTE. Non della macchina. Informa il cliente.",
+        "Tensione presente → procedi allo STEP 2."
+      ]
+    },
+    {
+      title: "PROTEZIONI ELETTRICHE NEL QUADRO",
+      checks: [
+        { id: "s5_4", label: "Fusibili di protezione", options: ["Integri","Bruciati"] },
+        { id: "s5_5", label: "Interruttore magnetotermico", options: ["Normale","Scattato"] },
+        { id: "s5_6", label: "Relè termico motore", options: ["Normale","Scattato"] }
+      ],
+      decision: [
+        "Fusibile bruciato → sostituisci e cerca la causa prima di riavviare.",
+        "Magnetotermico scattato → reset e riavvia. Se scatta di nuovo SUBITO: non forzare, guasto a valle.",
+        "Relè termico scattato → aspetta raffreddamento, reset. Indaga causa sovraccarico."
+      ]
+    },
+    {
+      title: "VERIFICA CIRCUITO DI COMANDO",
+      checks: [
+        { id: "s5_7", label: "Tensione circuito di comando (24V o 230V)", input: "V", type: "text" },
+        { id: "s5_8", label: "Pulsante di emergenza NON premuto / bloccato", options: ["OK","Premuto/bloccato"] },
+        { id: "s5_9", label: "Contattore di linea si eccita quando premo ON (visivo/acustico)", options: ["Si eccita","Nessuna reazione"] },
+        { id: "s5_10", label: "Interblocchi di sicurezza (porte quadro, pressostati)", options: ["OK","Interblocco aperto"] }
+      ],
+      decision: [
+        "Emergenza bloccata → sblocca e ritesta. Causa comune.",
+        "Sportello quadro non chiuso → chiudi correttamente e ritesta.",
+        "Contattore non si eccita con tensione presente → guasto contattore o bobina. Vai allo STEP 4."
+      ]
+    },
+    {
+      title: "SCHEDA ELETTRONICA / PLC",
+      checks: [
+        { id: "s5_11", label: "Display pannello comandi acceso e leggibile", options: ["OK","Spento/illeggibile"] },
+        { id: "s5_12", label: "Codice di allarme / errore sul display", input: "Codice errore", type: "text" },
+        { id: "s5_13", label: "Connettori e cablaggi scheda integri", options: ["OK","Anomalia"] }
+      ],
+      decision: [
+        "Codice errore → consulta il manuale della macchina per il significato specifico.",
+        "Display spento con tensione confermata → probabile guasto scheda. Non riparabile sul campo."
+      ]
+    },
+    {
+      title: "NON PARTE COMUNQUE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Probabile guasto contattore, scheda elettronica o cablaggio interno.",
+        "NON tentare di bypassare sicurezze o interblocchi per forzare l'avvio.",
+        "Annota tutti gli esiti precedenti e il codice errore esatto."
+      ]
+    }
+  ]
+},
+
+sop6: {
+  title: "SOP-6 — RUMORE ANOMALO",
+  subtitle: "Battito · fischio · vibrazione",
+  steps: [
+    {
+      title: "CARATTERIZZA IL RUMORE",
+      checks: [
+        { id: "s6_1", label: "Tipo di rumore:", options: ["Battito metallico","Fischio","Vibrazione","Ronzio"] },
+        { id: "s6_2", label: "Il rumore varia con la pressione (carico/scarico)?", options: ["Varia","Costante"] },
+        { id: "s6_3", label: "Provenienza:", options: ["Motore","Gruppo vite/pistoni","Cinghia","Non chiara"] },
+        { id: "s6_4", label: "Presente anche a vuoto (macchina scarica)?", options: ["Sì, sempre","No, solo sotto carico"] }
+      ],
+      decision: [
+        "Fischio COSTANTE indipendente dal carico → probabile perdita d'aria. Vai a SOP-11.",
+        "Rumore variabile con pressione dal gruppo compressione → vai allo STEP 2.",
+        "Rumore da cinghia o motore → vai allo STEP 3."
+      ]
+    },
+    {
+      title: "VERIFICA GRUPPO COMPRESSIONE",
+      checks: [
+        { id: "s6_5", label: "Battito metallico ritmico sincronizzato con la rotazione", options: ["Presente","Assente"] },
+        { id: "s6_6", label: "Amperaggio targa vs reale", input: "Targa / Reale (A)", type: "text" },
+        { id: "s6_7", label: "Livello e qualità olio lubrificante", options: ["OK","Basso","Esausto"] }
+      ],
+      decision: [
+        "Battito ritmico + amperaggio sopra targa → il gruppo vite ha preso gioco. Non riparabile sul campo: chiama Tonino.",
+        "Olio basso o esausto → ripristina e verifica se il rumore si riduce.",
+        "Persiste nonostante olio OK → segnala a Tonino."
+      ]
+    },
+    {
+      title: "VERIFICA CINGHIE E MOTORE",
+      checks: [
+        { id: "s6_8", label: "Tensione cinghie (non troppo lente, non troppo tese)", options: ["OK","Da regolare"] },
+        { id: "s6_9", label: "Stato cinghie (screpolature, lucidatura superficiale)", options: ["OK","Usurate"] },
+        { id: "s6_10", label: "Allineamento pulegge motore / compressore", options: ["OK","Disallineate"] },
+        { id: "s6_11", label: "Cuscinetti motore (gira a mano — MOTORE SPENTO)", options: ["OK","Gioco/rumore"] }
+      ],
+      decision: [
+        "Cinghie lente o usurate → tensiona o sostituisci. Causa comune e a basso costo.",
+        "Pulegge disallineate → correggi allineamento.",
+        "Cuscinetti con gioco → sostituzione cuscinetti o motore. Non sul campo."
+      ]
+    },
+    {
+      title: "RUMORE NON IDENTIFICATO — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "NON tenere in funzione la macchina se ci sono vibrazioni forti: rischio danno grave.",
+        "Registra un breve audio/video con il telefono prima di chiamare: aiuta la diagnosi."
+      ]
+    }
+  ]
+},
+
+sop7: {
+  title: "SOP-7 — PERDITE D'OLIO",
+  subtitle: "Basamento o raccordi · non da filtro aria",
+  steps: [
+    {
+      title: "LOCALIZZA IL PUNTO DI PERDITA",
+      checks: [
+        { id: "s7_1", label: "Pulisci tutta la macchina (sgrassatore)", options: ["Fatto"] },
+        { id: "s7_2", label: "Avvia la macchina qualche minuto e osserva dove riappare l'olio", input: "Punto individuato", type: "text" },
+        { id: "s7_3", label: "La perdita proviene da:", options: ["Raccordo/tubo flessibile","Guarnizione fissa/tappo","Zona albero/paraolio"] }
+      ],
+      decision: [
+        "Raccordo / tubo flessibile → vai allo STEP 2.",
+        "Guarnizione fissa o tappo → vai allo STEP 3.",
+        "Zona albero / paraolio → vai allo STEP 4."
+      ]
+    },
+    {
+      title: "RACCORDI E TUBI FLESSIBILI",
+      checks: [
+        { id: "s7_4", label: "Raccordo allentato?", options: ["OK","Allentato"] },
+        { id: "s7_5", label: "Tubo flessibile danneggiato o screpolato?", options: ["OK","Danneggiato"] },
+        { id: "s7_6", label: "O-ring o guarnizione raccordo usurata?", options: ["OK","Usurata"] }
+      ],
+      decision: [
+        "Raccordo allentato → serra alla coppia corretta e ritesta.",
+        "Tubo o O-ring danneggiato → sostituisci il componente."
+      ]
+    },
+    {
+      title: "GUARNIZIONI FISSE E TAPPI",
+      checks: [
+        { id: "s7_7", label: "Tappo di scarico olio: serraggio e guarnizione", options: ["OK","Da sostituire"] },
+        { id: "s7_8", label: "Guarnizione coperchio basamento / carter", options: ["OK","Usurata"] },
+        { id: "s7_9", label: "Guarnizione filtro olio sostituita insieme al filtro?", options: ["Sì","No — ERRORE COMUNE"] }
+      ],
+      decision: [
+        "Guarnizione usurata → sostituisci.",
+        "Guarnizione filtro non cambiata → causa comune. Sostituisci subito."
+      ]
+    },
+    {
+      title: "TENUTA ALBERO (ZONA CRITICA)",
+      checks: [
+        { id: "s7_10", label: "Perdita confermata all'accoppiamento motore-compressore", options: ["Confermato"] },
+        { id: "s7_11", label: "Quantità di perdita:", options: ["Leggero trafilamento","Perdita abbondante"] }
+      ],
+      decision: [
+        "Tenuta meccanica usurata. NON è riparabile sul campo.",
+        "Richiede smontaggio del gruppo: da fare con Tonino o in officina.",
+        "Nel frattempo: controlla il livello olio più frequentemente."
+      ]
+    },
+    {
+      title: "PERDITA NON LOCALIZZABILE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Fotografa la zona della perdita prima di chiamare: accelera la diagnosi."
+      ]
+    }
+  ]
+},
+
+sop8: {
+  title: "SOP-8 — SCARICO CONDENSA",
+  subtitle: "Non scarica · oppure scarica sempre",
+  steps: [
+    {
+      title: "IDENTIFICA IL TIPO DI GUASTO",
+      checks: [
+        { id: "s8_1", label: "Il problema è:", options: ["NON scarica mai","Scarica sempre / troppo spesso"] },
+        { id: "s8_2", label: "Tipo di scaricatore:", options: ["Elettronico/temporizzato","A flottatore/livello"] }
+      ],
+      decision: [
+        "NON scarica → vai allo STEP 2.",
+        "Scarica in continuo → vai allo STEP 3."
+      ]
+    },
+    {
+      title: "NON SCARICA (RISCHIO CONDENSA)",
+      checks: [
+        { id: "s8_3", label: "Alimentazione elettrica allo scaricatore", options: ["OK","Assente"] },
+        { id: "s8_4", label: "Elettrovalvola ostruita da impurità/morchia", options: ["OK","Ostruita"] },
+        { id: "s8_5", label: "Timer: intervallo e durata impostati correttamente", input: "Intervallo / Durata", type: "text" }
+      ],
+      decision: [
+        "Elettrovalvola ostruita → smonta, pulisci, rimonta e testa.",
+        "Timer sbagliato → correggi i parametri.",
+        "ATTENZIONE: condensa accumulata → corrosione interna + acqua nell'impianto."
+      ]
+    },
+    {
+      title: "SCARICA IN CONTINUO (SPRECO ARIA)",
+      checks: [
+        { id: "s8_6", label: "Sede di tenuta elettrovalvola usurata", options: ["OK","Usurata"] },
+        { id: "s8_7", label: "Corpo valvola o O-ring danneggiato", options: ["OK","Danneggiato"] },
+        { id: "s8_8", label: "Timer: intervallo troppo frequente o durata troppo lunga", input: "Verifica impostazioni", type: "text" }
+      ],
+      decision: [
+        "Sede usurata → sostituisci kit interno o intero scaricatore.",
+        "Timer sbagliato → correggi prima di sostituire: spesso risolve senza spendere."
+      ]
+    },
+    {
+      title: "PROBLEMA PERSISTE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Sostituzione completa scaricatore da valutare con Tonino.",
+        "Non lasciare il cliente con scaricatore guasto per più di qualche giorno."
+      ]
+    }
+  ]
+},
+
+sop9: {
+  title: "SOP-9 — ESSICCATORE NON ASCIUGA",
+  subtitle: "Aria umida in uscita",
+  steps: [
+    {
+      title: "TIPO DI ESSICCATORE",
+      checks: [
+        { id: "s9_1", label: "Tipo di essiccatore:", options: ["A refrigerazione","Ad adsorbimento (colonne)"] },
+        { id: "s9_2", label: "Punto di rugiada richiesto dal cliente", input: "°C", type: "text" }
+      ],
+      decision: [
+        "A refrigerazione → vai allo STEP 2.",
+        "Ad adsorbimento → vai allo STEP 3."
+      ]
+    },
+    {
+      title: "ESSICCATORE A REFRIGERAZIONE",
+      checks: [
+        { id: "s9_3", label: "Temperatura ambiente locale", input: "°C", type: "text" },
+        { id: "s9_4", label: "Condensatore pulito", options: ["OK","Sporco"] },
+        { id: "s9_5", label: "Ventola condensatore funzionante", options: ["OK","Anomalia"] },
+        { id: "s9_6", label: "Portata in entrata vs portata nominale essiccatore", input: "Richiesta / Nominale", type: "text" },
+        { id: "s9_7", label: "Scaricatore condensa dell'essiccatore funzionante (vedi SOP-8)", options: ["OK","Guasto"] }
+      ],
+      decision: [
+        "Condensatore sporco o ventola guasta → pulisci/ripara e ritesta.",
+        "Essiccatore sovraccarico → segnala a Lorenzo: adeguamento dimensionale.",
+        "Scaricatore guasto → risolvi come da SOP-8."
+      ]
+    },
+    {
+      title: "ESSICCATORE AD ADSORBIMENTO",
+      checks: [
+        { id: "s9_8", label: "Età del materiale assorbente (allumina/silice)", input: "Età materiale", type: "text" },
+        { id: "s9_9", label: "Ciclo di rigenerazione funziona (valvole di commutazione)", options: ["OK","Anomalia"] },
+        { id: "s9_10", label: "Contaminazione da olio a monte (danneggia il materiale)", options: ["OK","Contaminazione"] }
+      ],
+      decision: [
+        "Materiale esausto → sostituisci le cariche delle colonne.",
+        "Valvole di commutazione anomale → approfondisci con Tonino.",
+        "Contaminazione olio → verifica filtri a monte. Il materiale contaminato non si rigenera più."
+      ]
+    },
+    {
+      title: "PROBLEMA PERSISTE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Valvole di commutazione o ricarica colonne: intervento tecnico specializzato.",
+        "Annota punto di rugiada misurato (se disponibile) e condizioni ambientali."
+      ]
+    }
+  ]
+},
+
+sop10: {
+  title: "SOP-10 — CICLA TROPPO SPESSO",
+  subtitle: "Accensioni/spegnimenti ravvicinati",
+  steps: [
+    {
+      title: "MISURA LA FREQUENZA DI CICLAGGIO",
+      checks: [
+        { id: "s10_1", label: "Tempo tra un avviamento e il successivo (cronometra 3-4 cicli)", input: "minuti (media)", type: "text" },
+        { id: "s10_2", label: "Pressione MAX impostata", input: "bar (max)", type: "text" },
+        { id: "s10_3", label: "Pressione MIN di riattacco", input: "bar (min)", type: "text" }
+      ],
+      decision: [
+        "Differenziale <1 bar → causa probabile. Vai allo STEP 2.",
+        "Differenziale corretto ma cicla ancora → vai allo STEP 3."
+      ]
+    },
+    {
+      title: "CORREGGI IL DIFFERENZIALE",
+      checks: [
+        { id: "s10_4", label: "Differenziale consigliato dal costruttore per questo modello", input: "bar", type: "text" },
+        { id: "s10_5", label: "Differenziale reconfigurato al valore corretto", options: ["Fatto"] },
+        { id: "s10_6", label: "Tempo tra i cicli dopo la modifica", input: "minuti", type: "text" }
+      ],
+      decision: [
+        "Ciclaggio normalizzato → intervento risolto.",
+        "Cicla ancora troppo → vai allo STEP 3."
+      ]
+    },
+    {
+      title: "DIMENSIONAMENTO SERBATOIO E CONSUMO",
+      checks: [
+        { id: "s10_7", label: "Capacità serbatoio", input: "litri", type: "text" },
+        { id: "s10_8", label: "Consumo istantaneo vs portata compressore", input: "Consumo / Portata (l/min)", type: "text" },
+        { id: "s10_9", label: "Sospetti perdite sull'impianto? (vedi SOP-11)", options: ["Da verificare","No"] }
+      ],
+      decision: [
+        "Serbatoio sottodimensionato → non è un guasto, è fisica. Segnala a Lorenzo: serbatoio aggiuntivo.",
+        "Consumo vicino alla portata max → valuta macchina di portata maggiore.",
+        "Possibili perdite → vai a SOP-11."
+      ]
+    },
+    {
+      title: "CICLAGGIO ANOMALO — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Ciclaggio frequente prolungato usura motore, contattori e valvola di minima.",
+        "Annota tempo ciclo, differenziale impostato e capacità serbatoio prima di chiamare."
+      ]
+    }
+  ]
+},
+
+sop11: {
+  title: "SOP-11 — PERDITE D'ARIA IMPIANTO",
+  subtitle: "Sibilo · calo pressione · spreco aria",
+  steps: [
+    {
+      title: "QUANTIFICA LA PERDITA",
+      checks: [
+        { id: "s11_1", label: "Chiudi tutti i punti di utilizzo e pressurizza l'impianto", options: ["Fatto"] },
+        { id: "s11_2", label: "Pressione a inizio test (compressore fermo)", input: "bar (inizio)", type: "text" },
+        { id: "s11_3", label: "Pressione dopo 10 minuti", input: "bar (dopo 10 min)", type: "text" },
+        { id: "s11_4", label: "Calo percentuale", input: "% calo", type: "text" }
+      ],
+      decision: [
+        "Calo >10% in 10 minuti → PERDITA RILEVANTE. Vai allo STEP 2.",
+        "Calo minimo o assente → il problema potrebbe essere altro (vedi SOP-3 o SOP-10)."
+      ]
+    },
+    {
+      title: "RICERCA PUNTUALE DELLA PERDITA",
+      checks: [
+        { id: "s11_5", label: "Ispezione acustica lungo tutte le tubazioni (ascolta sibili)", options: ["Completata"] },
+        { id: "s11_6", label: "Test con soluzione saponata su raccordi, valvole, giunzioni", input: "Punti testati", type: "text" },
+        { id: "s11_7", label: "Controllo raccordi rapidi, vecchie riparazioni, punti di utilizzo inutilizzati", options: ["OK","Trovata perdita"] },
+        { id: "s11_8", label: "Tubi flessibili di collegamento alle utenze", options: ["OK","Perdita trovata"] }
+      ],
+      decision: [
+        "Perdita localizzata → ripara con teflon + mastice (diametri grandi) o teflon solo (piccoli). Riverifica.",
+        "Perdite multiple diffuse → valuta con Lorenzo revisione complessiva: spesso più conveniente che rincorrere singole perdite."
+      ]
+    },
+    {
+      title: "COMPONENTI SPECIFICI A RISCHIO",
+      checks: [
+        { id: "s11_9", label: "Valvole di zona: tenuta in posizione chiusa", options: ["OK","Perdita"] },
+        { id: "s11_10", label: "Giunti di dilatazione o flessibili invecchiati (screpolature)", options: ["OK","Da sostituire"] },
+        { id: "s11_11", label: "Attacchi rapidi di utenze non usate: tappati?", options: ["OK","Aperti — TAPPA SUBITO"] }
+      ],
+      decision: [
+        "Attacchi rapidi aperti → causa banale ma frequente. Tappa e sigilla subito.",
+        "Componenti usurati → sostituzione mirata."
+      ]
+    },
+    {
+      title: "RIVERIFICA FINALE",
+      checks: [
+        { id: "s11_12", label: "Ripeti test calo pressione (come STEP 1)", input: "% calo dopo riparazione", type: "text" },
+        { id: "s11_13", label: "Il cliente percepisce miglioramento?", options: ["Sì","No"] }
+      ],
+      decision: [
+        "Calo rientrato nella norma → INTERVENTO CHIUSO. Registra su Zoho.",
+        "Ancora significativo → perdite in punti non accessibili. Vai allo STEP 5."
+      ]
+    },
+    {
+      title: "PERDITA NON LOCALIZZABILE — CHIAMA TONINO",
+      isStop: true,
+      checks: [],
+      decision: [
+        "Potrebbe servire strumentazione ad ultrasuoni dedicata.",
+        "Proponi al cliente analisi approfondita come servizio aggiuntivo (opportunità commerciale)."
+      ]
+    }
+  ]
+}
+
+}; // fine SOPS
+
+// ══════════════════════════════════════════════════════════
+// STATO APPLICAZIONE
+// ══════════════════════════════════════════════════════════
+let currentSOP = null;
+let currentStep = 0;
+let stepData = {}; // { stepIndex: { checkId: value, ... } }
+let stepCompleted = []; // bool per step
+
+
+// ══════════════════════════════════════════════════════════
+// MANUALE OPERATIVO — DATI
+// ══════════════════════════════════════════════════════════
+const MANUALI = {
+man1: { title: "🔧 MANUTENZIONE ORDINARIA", subtitle: "Intervento programmato", color: "#059669",
+  steps: [
+    { title: "A — PREPARAZIONE INTERVENTO", sop: ["Se materiali non disponibili → NON partire: avvisa Francesca DF e riprogramma.","Controlla sempre le ultime note su Zoho prima di arrivare."],
+      checks: [{id:"m1_1",label:"Verificare ordine di lavoro e confermare appuntamento"},{id:"m1_2",label:"Caricare furgone: filtri, olio, kit revisione",note:"Verifica Zoho"},{id:"m1_3",label:"Portare strumentazione: manometro, multimetro, analizzatore perdite"},{id:"m1_4",label:"DPI: guanti, occhiali, scarpe antinfortunistiche"}]},
+    { title: "B — ARRIVO E ISPEZIONE VISIVA", sop: ["Perdite gravi o temperatura fuori range → BLOCCA, fotografa, avvisa Lorenzo.","Non riavviare macchine anomale senza autorizzazione."],
+      checks: [{id:"m1_5",label:"Presentarsi al referente tecnico del cliente"},{id:"m1_6",label:"Ispezione visiva: perdite, surriscaldamenti, rumori anomali",note:"Annota"},{id:"m1_7",label:"Pressione di esercizio sul manometro",note:"bar"},{id:"m1_8",label:"Temperatura di esercizio",note:"°C"},{id:"m1_9",label:"Livello olio lubrificante"}]},
+    { title: "C — ESECUZIONE MANUTENZIONE", sop: ["Codici filtri e olio → registra su Zoho al termine.","Foto PRIMA e DOPO obbligatorie — carica su cartella cliente.","Cinghia con usura >30% → sostituisci e comunica a Francesca."],
+      checks: [{id:"m1_10",label:"Spegnere macchina + cartellino BLOCCO MANUTENZIONE"},{id:"m1_11",label:"Scaricare pressione dal serbatoio",note:"zero verificato"},{id:"m1_12",label:"Sostituzione filtro olio",note:"Marca/codice"},{id:"m1_13",label:"Sostituzione filtro aria",note:"Marca/codice"},{id:"m1_14",label:"Sostituzione filtro separatore olio-aria",note:"Marca/codice"},{id:"m1_15",label:"Sostituzione olio lubrificante (se previsto)",note:"Litri/Tipo"},{id:"m1_16",label:"Pulizia radiatore di raffreddamento"},{id:"m1_17",label:"Verifica cinghie di trasmissione",note:"OK/Sostituita"},{id:"m1_18",label:"Verifica valvola di sicurezza",note:"OK/Anomalia"},{id:"m1_19",label:"Verifica scaricatore condensa automatico",note:"OK/Anomalia"},{id:"m1_20",label:"Pulizia generale esterna macchina"}]},
+    { title: "D — TEST POST-MANUTENZIONE", sop: ["Macchina non raggiunge set-point o temperatura anomala → NON rilasciare al cliente.","Chiama Tonino prima di lasciare il sito."],
+      checks: [{id:"m1_21",label:"Riavvio macchina e avviamento regolare"},{id:"m1_22",label:"Pressione in salita raggiunge set-point",note:"bar"},{id:"m1_23",label:"Assenza perdite con spray rilevatore"},{id:"m1_24",label:"Temperatura di regime stabile dopo 10 minuti",note:"°C"},{id:"m1_25",label:"Corrente assorbita nel range nominale",note:"A"}]},
+    { title: "E — CHIUSURA INTERVENTO", sop: ["Prossima manutenzione: inserisci su Zoho PRIMA di lasciare il sito.","Ogni anomalia non risolta → offerta entro 24h a Francesca."],
+      checks: [{id:"m1_26",label:"Compilare rapporto di lavoro e far firmare il cliente"},{id:"m1_27",label:"Consegnare copia rapporto al cliente"},{id:"m1_28",label:"Aggiornare scheda macchina su Zoho"},{id:"m1_29",label:"Fotografare targhetta macchina se dati assenti a sistema"},{id:"m1_30",label:"Comunicare a Francesca eventuali lavori aggiuntivi"}]}
+  ]},
+man2: { title: "🚨 INTERVENTO D'URGENZA", subtitle: "Produzione ferma · priorità massima", color: "#DC2626",
+  steps: [
+    { title: "A — RICEZIONE CHIAMATA", sop: ["Cliente SENZA backup → attiva protocollo noleggio di emergenza.","Verifica disponibilità noleggio CLA prima di partire — contatta Francesca DF.","MAI promettere meno di 1 ora senza certezza."],
+      checks: [{id:"m2_1",label:"Sintomi esatti: cosa fa/non fa la macchina",note:"Sintomi"},{id:"m2_2",label:"Codici errore sul display",note:"Codice"},{id:"m2_3",label:"Quando è iniziato il problema"},{id:"m2_4",label:"Ultima manutenzione effettuata",note:"Data"},{id:"m2_5",label:"Compressori di backup disponibili?",note:"SI/NO"}]},
+    { title: "B — PREPARAZIONE RAPIDA (MAX 20 MIN)", sop: ["Kit urgenza SEMPRE pronto — controllato ogni lunedì mattina.","Pezzo mancante dal furgone → parti lo stesso, chiama Francesca."],
+      checks: [{id:"m2_6",label:"Kit urgenza: multimetro, manometro, chiavi, fusibili"},{id:"m2_7",label:"Ricambi comuni: valvola minima, pressostato, fusibili, cinghie"},{id:"m2_8",label:"Se possibile: portare macchina noleggio di emergenza",note:"Targa"}]},
+    { title: "C — DIAGNOSI IN LOCO", sop: ["Problema elettrico → reset e test → si ripete: chiama Tonino.","Surriscaldamento → radiatore/olio/filtro → spesso la pulizia risolve.","Nessuna pressione → valvola minima e separatore.","Rumore anomalo interno → NON riavviare. Chiama Tonino SUBITO.","Diagnosi >30 min senza soluzione → attiva noleggio e pianifica."],
+      checks: [{id:"m2_9",label:"Ispezione visiva: bruciature, perdite, olio",note:"Anomalia"},{id:"m2_10",label:"Tensione alimentazione elettrica",note:"V"},{id:"m2_11",label:"Fusibili e protezioni elettriche",note:"OK/Intervenuti"},{id:"m2_12",label:"Pressione olio (se manometro presente)",note:"bar"},{id:"m2_13",label:"Temperatura testata/blocco",note:"°C"},{id:"m2_14",label:"Codice errore dal pannello di controllo",note:"Codice"},{id:"m2_15",label:"Filtro aria: ostruzione?",note:"OK/Otturato"},{id:"m2_16",label:"Livello olio",note:"OK/Basso/Assente"}]},
+    { title: "D — RIPARAZIONE / RIPRISTINO", sop: ["Se non risolvi entro 45 minuti → NON continuare da solo.","Attiva il noleggio PER PRIMO — poi risolvi con calma.","Il cliente DEVE riprendere a produrre."],
+      checks: [{id:"m2_17",label:"Intervenire sulla causa individuata",note:"Causa"},{id:"m2_18",label:"Sostituire componente difettoso (se disponibile)",note:"Componente"},{id:"m2_19",label:"Se non disponibile: attivare compressore noleggio CLA"}]},
+    { title: "E — TEST E RILASCIO", sop: ["Ogni urgenza → offerta contratto entro 48h.","Cliente senza contratto che va in blocco è il lead più caldo.","Comunica a Francesca/Lorenzo entro 1 ora dalla chiusura."],
+      checks: [{id:"m2_20",label:"Avvio e funzionamento regolare (min 15 minuti)"},{id:"m2_21",label:"Pressione raggiunge set-point",note:"bar"},{id:"m2_22",label:"Nessuna perdita rilevata"},{id:"m2_23",label:"Cliente conferma ripresa produzione"},{id:"m2_24",label:"Compilare rapporto urgenza e far firmare"},{id:"m2_25",label:"Fotografare componente sostituito (prima e dopo)"},{id:"m2_26",label:"Aggiornare Zoho entro fine giornata"}]}
+  ]},
+man3: { title: "🔄 SOSTITUZIONE COMPRESSORE", subtitle: "Programmato · min 2 tecnici", color: "#2563EB",
+  steps: [
+    { title: "A — PREPARAZIONE (GIORNO PRIMA)", sop: ["Nuova macchina DEVE essere testata in officina prima.","Verifica voltaggio impianto cliente: 230V o 400V?","Comunica fermo produzione stimato con almeno 24h di anticipo."],
+      checks: [{id:"m3_1",label:"Confermare data, ora, referente tecnico con cliente"},{id:"m3_2",label:"Nuova macchina in sede e testata"},{id:"m3_3",label:"Parametri corretti (pressione, portata, voltaggio)",note:"bar/l/min"},{id:"m3_4",label:"Materiali pronti: raccordi, tubi, cavi"},{id:"m3_5",label:"Muletto/transpallet disponibile se peso >100kg",note:"kg"},{id:"m3_6",label:"Almeno 2 tecnici confermati",note:"Nomi tecnici"}]},
+    { title: "B — SMONTAGGIO MACCHINA ESISTENTE", sop: ["Foto PRIMA della disconnessione: obbligatorie.","Macchina rimossa: rimane al cliente o CLA la ritira?","Se CLA la ritira: registra su Zoho come 'usato da valutare'."],
+      checks: [{id:"m3_7",label:"Spegnere macchina e sezionare alimentazione"},{id:"m3_8",label:"Cartellino BLOCCO su quadro elettrico"},{id:"m3_9",label:"Pressione serbatoio scaricata a zero",note:"confermato"},{id:"m3_10",label:"Foto collegamenti elettrici PRIMA di scollegare"},{id:"m3_11",label:"Foto schema tubazioni PRIMA di scollegare"},{id:"m3_12",label:"Scollegare alimentazione elettrica"},{id:"m3_13",label:"Scollegare tubo aria compressa"},{id:"m3_14",label:"Scollegare tubo scarico condensa"},{id:"m3_15",label:"Movimentare macchina vecchia in sicurezza"},{id:"m3_16",label:"Annotare N° serie macchina rimossa",note:"N° serie"}]},
+    { title: "C — INSTALLAZIONE NUOVA MACCHINA", sop: ["Senso di rotazione errato su trifase è il guasto più comune post-installazione.","Verifica senso rotazione con manometro staccato per 2 secondi prima di avviare.","Distanza minima da pareti: 50cm tutti i lati."],
+      checks: [{id:"m3_17",label:"Posizionare nuova macchina nel punto corretto"},{id:"m3_18",label:"Piano di appoggio livellato"},{id:"m3_19",label:"Collegare tubo aria compressa"},{id:"m3_20",label:"Collegare scarico condensa"},{id:"m3_21",label:"Collegare alimentazione (rispetta le foto!)"},{id:"m3_22",label:"Verificare senso rotazione motore (trifase)",note:"Corretto/Invertito"},{id:"m3_23",label:"Caricare olio se macchina a secco",note:"Litri/Tipo"}]},
+    { title: "D — AVVIO E COLLAUDO", sop: ["Lascia la macchina in funzione almeno 30 minuti prima del collaudo.","Corrente supera nominale >10% → spegni e indaga.","Richiedi firma collaudo al cliente: è la tua liberatoria."],
+      checks: [{id:"m3_24",label:"Primo avvio senza carico: rumore e vibrazioni",note:"OK/Anomalia"},{id:"m3_25",label:"Avvio con carico: salita pressione",note:"Tempo min"},{id:"m3_26",label:"Raggiungimento set-point",note:"bar"},{id:"m3_27",label:"Temperatura esercizio dopo 20 minuti",note:"°C"},{id:"m3_28",label:"Assenza perdite su tutti i raccordi"},{id:"m3_29",label:"Corrente assorbita vs nominale",note:"Reale/Nominale A"},{id:"m3_30",label:"Impostare parametri: pressione min/max, timer condensa"}]},
+    { title: "E — DOCUMENTAZIONE E CHIUSURA", sop: ["Ogni macchina nuova → offerta contratto allegata al verbale.","Prima manutenzione: inserisci su Zoho entro fine giornata.","Email riepilogativa al cliente entro 24h."],
+      checks: [{id:"m3_31",label:"Compilare verbale di installazione e collaudo"},{id:"m3_32",label:"Far firmare verbale al responsabile cliente"},{id:"m3_33",label:"Consegnare manuale d'uso nuova macchina"},{id:"m3_34",label:"Registrare nuova macchina su Zoho"},{id:"m3_35",label:"Rimuovere macchina vecchia e pulire area"},{id:"m3_36",label:"Proporre contratto manutenzione",note:"SI/NO/CI PENSO"}]}
+  ]},
+man4: { title: "🏗 INSTALLAZIONE IMPIANTO ARIA", subtitle: "⚠ Lavoro in quota · DPI anticaduta · min 2 tecnici", color: "#D97706",
+  steps: [
+    { title: "A — SOPRALLUOGO (OBBLIGATORIO)", sop: ["NESSUNA installazione parte senza sopralluogo documentato.","Schema tecnico approvato da Lorenzo prima di ordinare i materiali.","Locale umido o estremo → segnala a Lorenzo."],
+      checks: [{id:"m4_1",label:"Sopralluogo effettuato e misure raccolte",note:"Planimetria allegata"},{id:"m4_2",label:"Percorso tubazioni verificato (ostacoli, attraversamenti)"},{id:"m4_3",label:"Punto allaccio elettrico idoneo",note:"V / A disponibili"},{id:"m4_4",label:"Portata d'aria richiesta verificata",note:"l/min"},{id:"m4_5",label:"Foto locale compressori e percorso impianto"},{id:"m4_6",label:"Schema tecnico redatto o verificato",note:"allegato"}]},
+    { title: "B — PREPARAZIONE E MATERIALI", sop: ["Trabattello DEVE essere omologato e controllato.","MAI lavorare in quota da soli. Nessuna eccezione.","Verifica che il cliente abbia liberato l'area."],
+      checks: [{id:"m4_7",label:"Lista materiali completa e preventivo pronto",note:"N° preventivo"},{id:"m4_8",label:"Tutti i materiali disponibili o ordinati",note:"Data consegna"},{id:"m4_9",label:"Scala/trabattello idoneo disponibile",note:"Altezza max m"},{id:"m4_10",label:"DPI anticaduta verificati e a norma",note:"Scadenza imbracatura"},{id:"m4_11",label:"Almeno 2 tecnici confermati per tutta la durata",note:"Nomi"}]},
+    { title: "C — ESECUZIONE LAVORI", sop: ["Tubazioni: pendenza minima 1-2% verso punti di scarico condensa.","Raccordi filettati: teflon o canapa+mastice. MAI solo teflon su >1 pollice.","Fotografa ogni giunzione prima di coprire."],
+      checks: [{id:"m4_12",label:"Delimitare area e posizionare segnaletica"},{id:"m4_13",label:"Installare supporti e staffe tubazioni"},{id:"m4_14",label:"Posare tubazioni seguendo schema approvato"},{id:"m4_15",label:"Eseguire raccorderia e giunzioni"},{id:"m4_16",label:"Installare attacchi rapidi e valvole di zona"},{id:"m4_17",label:"Installare valvole di intercettazione per zone"},{id:"m4_18",label:"Installare scaricatori condensa nei punti corretti"},{id:"m4_19",label:"Collegare il compressore all'impianto"},{id:"m4_20",label:"Collegare alimentazione elettrica compressore"}]},
+    { title: "D — TEST IMPIANTO", sop: ["Tolleranza perdite ZERO. Non collaudare con anche minime perdite.","Documenta pressione di test e durata: obbligatorio per garanzia.","Cicla troppo → perdita non trovata o impianto sottodimensionato."],
+      checks: [{id:"m4_21",label:"Pressurizzare impianto lentamente"},{id:"m4_22",label:"Test perdite: soluzione saponata su tutti i raccordi",note:"Perdite trovate"},{id:"m4_23",label:"Tutte le perdite risolte prima del collaudo"},{id:"m4_24",label:"Pressione stabile per almeno 30 minuti",note:"Inizio/Finale bar"},{id:"m4_25",label:"Funzionamento tutti i punti di utilizzo",note:"N° punti"},{id:"m4_26",label:"Funzionamento scaricatori condensa"},{id:"m4_27",label:"Test compressore: avvio, salita pressione, cut-off"}]},
+    { title: "E — COLLAUDO E CONSEGNA", sop: ["Schema as-built fondamentale per interventi futuri.","Foto impianto finito: minimo 10 foto da angolazioni diverse.","Impianto nuovo = momento migliore per proporre il contratto."],
+      checks: [{id:"m4_28",label:"Dimostrare funzionamento al referente cliente"},{id:"m4_29",label:"Spiegare: lettura manometri e uso valvole di zona"},{id:"m4_30",label:"Spiegare: manutenzione condensa e frequenza"},{id:"m4_31",label:"Consegnare schema as-built",note:"Schema consegnato"},{id:"m4_32",label:"Compilare e far firmare verbale di collaudo"},{id:"m4_33",label:"Consegnare manuale d'uso compressore"},{id:"m4_34",label:"Registrare impianto su Zoho: schema, foto, dati"},{id:"m4_35",label:"Proporre contratto manutenzione impianto + compressore",note:"SI/NO/CI PENSO"}]}
+  ]}
+};
+
+let currentMAN = null;
+let manStep = 0;
+let manData = {};
+let manStepCompleted = [];
+
+function startMAN(manId) {
+  currentMAN = MANUALI[manId];
+  manStep = 0;
+  manStepCompleted = new Array(currentMAN.steps.length).fill(false);
+  manData = {};
+  document.getElementById('homeScreen').classList.add('hidden');
+  document.getElementById('manScreen').style.display = 'block';
+  document.getElementById('manTitle').textContent = currentMAN.title;
+  document.getElementById('manSubtitle').textContent = currentMAN.subtitle;
+  document.getElementById('manHeader').style.background = currentMAN.color;
+  document.getElementById('manStepZero').style.display = 'block';
+  document.getElementById('manStepsArea').style.display = 'none';
+  document.getElementById('mfData').value = new Date().toISOString().split('T')[0];
+  document.getElementById('mfCliente').value = '';
+  document.getElementById('mfTecnico').value = '';
+  document.getElementById('mfOre').value = '';
+  document.getElementById('mfMacchina').value = '';
+  updateManProgress();
+}
+
+function beginMAN() {
+  document.getElementById('manStepZero').style.display = 'none';
+  document.getElementById('manStepsArea').style.display = 'block';
+  manStep = 0;
+  renderManSteps();
+  updateManProgress();
+}
+
+function updateManProgress() {
+  if (!currentMAN) return;
+  const total = currentMAN.steps.length;
+  const done = manStepCompleted.filter(Boolean).length;
+  document.getElementById('manProgressFill').style.width = ((done/total)*100) + '%';
+  document.getElementById('manSubtitle').textContent = manStep >= 0
+    ? 'Fase ' + (manStep+1) + ' di ' + total
+    : currentMAN.subtitle;
+}
+
+function renderManSteps() {
+  const container = document.getElementById('manStepsContainer');
+  container.innerHTML = '';
+  currentMAN.steps.forEach((step, idx) => {
+    const panel = document.createElement('div');
+    panel.className = 'step-panel' + (idx > manStep ? ' step-locked' : '');
+    panel.id = 'man-panel-' + idx;
+
+    const hdr = document.createElement('div');
+    hdr.className = 'step-header';
+    hdr.style.background = currentMAN.color;
+    hdr.innerHTML = `<div class="step-num" style="background:rgba(255,255,255,0.2)">${String.fromCharCode(65+idx)}</div>
+      <div class="step-title">${step.title}</div>
+      <div class="step-done-badge ${manStepCompleted[idx]?'visible':''}" id="manbadge-${idx}">✓ Fatto</div>`;
+    panel.appendChild(hdr);
+
+    // Check list
+    const list = document.createElement('div');
+    list.className = 'check-list';
+    step.checks.forEach(ch => {
+      const item = document.createElement('div');
+      item.className = 'check-item';
+      const noteHtml = ch.note ? `<div class="check-input-row"><input class="check-input" id="maninp-${ch.id}" placeholder="${ch.note}" oninput="saveManInput('${ch.id}', this.value)"></div>` : '';
+      item.innerHTML = `<div class="check-item-top">
+        <div class="check-box" id="mancb-${ch.id}" onclick="toggleManCheck('${ch.id}')"></div>
+        <div class="check-label">${ch.label}</div>
+      </div>${noteHtml}`;
+      list.appendChild(item);
+    });
+    panel.appendChild(list);
+
+    // SOP box
+    if (step.sop && step.sop.length > 0) {
+      const sop = document.createElement('div');
+      sop.className = 'decision-box';
+      sop.style.borderColor = currentMAN.color;
+      sop.style.background = currentMAN.color + '12';
+      sop.innerHTML = `<div class="decision-box-title" style="color:${currentMAN.color}">⚙ NOTA SOP</div>` +
+        step.sop.map(s => `<div class="decision-item" style="--c:${currentMAN.color}">→ ${s}</div>`).join('');
+      panel.appendChild(sop);
+    }
+
+    // Lock
+    if (idx > 0) {
+      const lock = document.createElement('div');
+      lock.className = 'lock-notice' + (idx > manStep ? ' visible' : '');
+      lock.id = 'manlock-' + idx;
+      lock.textContent = '⬆ Completa la fase precedente prima di procedere';
+      panel.appendChild(lock);
+    }
+
+    // Nav
+    if (idx === manStep) {
+      const nav = document.createElement('div');
+      nav.className = 'step-nav';
+      const isLast = idx === currentMAN.steps.length - 1;
+      nav.innerHTML = `<button class="btn-next ${isLast?'complete':''}" id="manbtn-${idx}"
+        style="${isLast?'background:'+currentMAN.color:''}"
+        onclick="completeManStep(${idx})" disabled>
+        ${isLast ? '✓ Intervento completato' : 'Fase successiva →'}
+      </button>`;
+      panel.appendChild(nav);
+    }
+    container.appendChild(panel);
+  });
+
+  // Ripristina stati
+  Object.keys(manData).forEach(k => {
+    if (manData[k].checked) {
+      const cb = document.getElementById('mancb-'+k);
+      if (cb) cb.classList.add('checked');
+    }
+    if (manData[k].val) {
+      const inp = document.getElementById('maninp-'+k);
+      if (inp) inp.value = manData[k].val;
+    }
+  });
+  checkManCompletable(manStep);
+}
+
+function toggleManCheck(id) {
+  if (!manData[id]) manData[id] = {};
+  manData[id].checked = !manData[id].checked;
+  const cb = document.getElementById('mancb-'+id);
+  cb.classList.toggle('checked', manData[id].checked);
+  checkManCompletable(manStep);
+}
+
+function saveManInput(id, val) {
+  if (!manData[id]) manData[id] = {};
+  manData[id].val = val;
+}
+
+function checkManCompletable(idx) {
+  const step = currentMAN.steps[idx];
+  if (!step) return;
+  const btn = document.getElementById('manbtn-'+idx);
+  if (!btn) return;
+  const all = step.checks.every(ch => manData[ch.id] && manData[ch.id].checked);
+  btn.disabled = !all;
+}
+
+function completeManStep(idx) {
+  manStepCompleted[idx] = true;
+  const badge = document.getElementById('manbadge-'+idx);
+  if (badge) badge.classList.add('visible');
+  if (idx < currentMAN.steps.length - 1) {
+    manStep = idx + 1;
+    updateManProgress();
+    renderManSteps();
+    setTimeout(() => {
+      const p = document.getElementById('man-panel-'+(idx+1));
+      if (p) p.scrollIntoView({behavior:'smooth',block:'start'});
+    }, 100);
+  } else {
+    showManSummary();
+  }
+}
+
+function showManSummary() {
+  document.getElementById('manScreen').style.display = 'none';
+  const sum = document.getElementById('summaryScreen');
+  sum.classList.add('active');
+  currentSummaryType = 'man';
+
+  const dataFields = [
+    ['Cliente', document.getElementById('mfCliente').value||'—'],
+    ['Data', document.getElementById('mfData').value||'—'],
+    ['Tecnico', document.getElementById('mfTecnico').value||'—'],
+    ['Macchina', document.getElementById('mfMacchina').value||'—'],
+    ['Ore macchina', document.getElementById('mfOre').value||'—'],
+    ['Tipologia', currentMAN.title],
+  ];
+  document.getElementById('summaryContent').innerHTML = dataFields
+    .map(([l,v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`)
+    .join('');
+
+  const notes = [];
+  currentMAN.steps.forEach(step => {
+    step.checks.forEach(ch => {
+      const d = manData[ch.id];
+      if (d && d.val) notes.push([ch.label.substring(0,40), d.val]);
+    });
+  });
+  document.getElementById('summaryData').innerHTML = notes.length > 0
+    ? notes.map(([l,v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`).join('')
+    : '<div style="color:var(--steel);font-size:13px;padding:8px 0">Nessuna nota aggiuntiva</div>';
+}
+
+// ══════════════════════════════════════════════════════════
+// PDF EXPORT
+// ══════════════════════════════════════════════════════════
+let currentSummaryType = 'sop';
+
+function stampaPDF() {
+  const cliente = (document.getElementById('fCliente') || document.getElementById('mfCliente') || {}).value || '—';
+  const data = (document.getElementById('fData') || document.getElementById('mfData') || {}).value || '—';
+  const tecnico = (document.getElementById('fTecnico') || document.getElementById('mfTecnico') || {}).value || '—';
+  const macchina = (document.getElementById('fMacchina') || document.getElementById('mfMacchina') || {}).value || '—';
+  const ore = (document.getElementById('fOre') || document.getElementById('mfOre') || {}).value || '—';
+  const tipo = currentSummaryType === 'man' ? (currentMAN ? currentMAN.title : '—') : (currentSOP ? currentSOP.title : '—');
+
+  const rows = document.getElementById('summaryContent').innerHTML;
+  const noteRows = document.getElementById('summaryData').innerHTML;
+
+  const html = `<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
+<title>Rapporto Intervento CLA</title>
+<style>
+  body { font-family: Arial, sans-serif; font-size: 13px; color: #0F172A; margin: 0; padding: 24px; }
+  .header { background: #1A2F4B; color: white; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 18px; margin: 0; }
+  .header p { font-size: 11px; color: #94A3B8; margin: 2px 0 0; }
+  .header-right { text-align: right; font-size: 12px; }
+  .section { background: #F1F5F9; border-radius: 6px; padding: 14px 16px; margin-bottom: 14px; }
+  .section h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #64748B; margin: 0 0 10px; border-bottom: 1px solid #CBD5E1; padding-bottom: 6px; }
+  .row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #E2E8F0; font-size: 12px; }
+  .row:last-child { border-bottom: none; }
+  .lbl { color: #64748B; }
+  .val { font-weight: bold; text-align: right; }
+  .footer { text-align: center; font-size: 10px; color: #94A3B8; margin-top: 24px; border-top: 1px solid #E2E8F0; padding-top: 12px; }
+  .regole { background: #FEF2F2; border-left: 4px solid #DC2626; padding: 10px 14px; border-radius: 4px; margin-top: 14px; }
+  .regole h2 { font-size: 11px; text-transform: uppercase; color: #DC2626; margin: 0 0 8px; }
+  .regola { font-size: 12px; padding: 3px 0; }
+  @media print { body { padding: 8px; } }
+</style>
+</head><body>
+<div class="header">
+  <div><h1>C.L.A. COMPRESSORI S.r.l.</h1><p>Rapporto di Intervento — Uso Interno</p></div>
+  <div class="header-right"><div style="font-size:14px;font-weight:bold">${tipo}</div><div style="color:#94A3B8;font-size:11px">${data}</div></div>
+</div>
+<div class="section">
+  <h2>Dati intervento</h2>
+  ${rows}
+</div>
+<div class="section">
+  <h2>Note e valori rilevati</h2>
+  ${noteRows}
+</div>
+<div class="section" style="background:white;border:1px solid #CBD5E1">
+  <h2>Firma cliente</h2>
+  <div style="height:60px;border-bottom:1px solid #CBD5E1;margin-bottom:8px"></div>
+  <div style="font-size:11px;color:#64748B">Il cliente dichiara che l'intervento è stato eseguito a regola d'arte e l'impianto è in stato di funzionamento regolare.</div>
+</div>
+<div class="regole">
+  <h2>⚠ Obblighi post-intervento</h2>
+  <div class="regola">1. Aggiornare Zoho entro fine giornata con materiali usati e prossima scadenza</div>
+  <div class="regola">2. Foto prima/dopo caricate su cartella cliente</div>
+  <div class="regola">3. Ogni anomalia non risolta → offerta a Francesca entro 24h</div>
+  <div class="regola">4. Urgenza → offerta contratto manutenzione entro 48h</div>
+</div>
+<div class="footer">C.L.A. Compressori S.r.l. — Aprilia (LT) — info@clacompressori.it — +39 392 744 2285<br>Documento riservato — Uso interno</div>
+<script>window.onload = function(){ window.print(); }<\/script>
+</body></html>`;
+
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+}
+
+
+// NUMERI UTILI
+const NUMERI = [
+  {nome:"Tonino (Responsabile Tecnico)", tel:"3404102949", ruolo:"interno"},
+  {nome:"Lorenzo Chialastri", tel:"3498335185", ruolo:"interno"},
+  {nome:"Riccardo — Tecnico ALMIG", tel:"3484957167", ruolo:"fornitore"},
+  {nome:"Matteo Milan — Tecnico ABAC", tel:"3316566202", ruolo:"fornitore"},
+  {nome:"Cunico — Tecnico ABAC", tel:"3407436396", ruolo:"fornitore"},
+  {nome:"Massimiliano D'Elia — Tecnico ABAC Pistoni", tel:"3346848578", ruolo:"fornitore"},
+  {nome:"Polimanti — Tecnico Atlas Copco", tel:"3357795733", ruolo:"fornitore"},
+];
+
+function buildNumeri(){
+  const c = document.getElementById("numeri-utili");
+  if(!c) return;
+  NUMERI.forEach((n,i)=>{
+    const row = document.createElement("a");
+    row.href = "tel:+39"+n.tel;
+    row.style.cssText = "display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:"+(i<NUMERI.length-1?"1px solid #F1F5F9":"none")+";text-decoration:none;";
+    const badge = n.ruolo==="interno"?"#EFF6FF":"#F0FDF4";
+    const badgeColor = n.ruolo==="interno"?"#2563EB":"#059669";
+    row.innerHTML = "<div style='flex:1'><div style='font-size:13px;font-weight:bold;color:#0F172A'>"+n.nome+"</div><div style='font-size:12px;color:#64748B'>+39 "+n.tel+"</div></div><div style='font-size:11px;font-weight:bold;padding:3px 8px;border-radius:10px;background:"+badge+";color:"+badgeColor+"'>"+labelText+"</div><div style='font-size:20px;color:#2563EB'>&#128222;</div>";
+    c.appendChild(row);
+  });
+}
+
+// Aggiorna modale Tonino con numero reale
+function openTonino() {
+  document.getElementById("toninoModal").classList.add("open");
+}
+
+function goHome() {
+  document.getElementById('homeScreen').classList.remove('hidden');
+  document.getElementById('sopScreen').style.display = 'none';
+  document.getElementById('manScreen').style.display = 'none';
+  document.getElementById('summaryScreen').classList.remove('active');
+  currentSOP = null;
+  currentStep = 0;
+  stepData = {};
+  stepCompleted = [];
+}
+
+function startSOP(sopId) {
+  currentSOP = SOPS[sopId];
+  currentStep = -1; // -1 = form dati
+  stepCompleted = new Array(currentSOP.steps.length).fill(false);
+  stepData = {};
+
+  document.getElementById('homeScreen').classList.add('hidden');
+  document.getElementById('sopScreen').style.display = 'block';
+  document.getElementById('summaryScreen').classList.remove('active');
+
+  document.getElementById('sopTitle').textContent = currentSOP.title;
+  document.getElementById('sopSubtitle').textContent = currentSOP.subtitle;
+
+  document.getElementById('stepZero').style.display = 'block';
+  document.getElementById('stepsArea').style.display = 'none';
+
+  // reset form
+  document.getElementById('fData').value = new Date().toISOString().split('T')[0];
+  document.getElementById('fCliente').value = '';
+  document.getElementById('fTecnico').value = '';
+  document.getElementById('fOre').value = '';
+  document.getElementById('fMacchina').value = '';
+
+  updateProgress();
+}
+
+function beginSOP() {
+  document.getElementById('stepZero').style.display = 'none';
+  document.getElementById('stepsArea').style.display = 'block';
+  currentStep = 0;
+  renderAllSteps();
+  updateProgress();
+  scrollToStep(0);
+}
+
+function updateProgress() {
+  const total = currentSOP ? currentSOP.steps.length : 1;
+  const done = stepCompleted.filter(Boolean).length;
+  const pct = total > 0 ? (done / total) * 100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('sopSubtitle').textContent =
+    currentStep >= 0
+      ? `Step ${currentStep + 1} di ${total}`
+      : currentSOP.subtitle;
+}
+
+function renderAllSteps() {
+  const container = document.getElementById('stepsContainer');
+  container.innerHTML = '';
+  const steps = currentSOP.steps;
+
+  steps.forEach((step, idx) => {
+    const panel = document.createElement('div');
+    panel.className = 'step-panel' + (idx > currentStep ? ' step-locked' : '');
+    panel.id = 'step-panel-' + idx;
+
+    // Header step
+    const hdr = document.createElement('div');
+    hdr.className = 'step-header';
+    hdr.innerHTML = `
+      <div class="step-num">${idx + 1}</div>
+      <div class="step-title">${step.title}</div>
+      <div class="step-done-badge ${stepCompleted[idx] ? 'visible' : ''}" id="badge-${idx}">✓ Completato</div>
+    `;
+    panel.appendChild(hdr);
+
+    // Check items
+    if (step.checks && step.checks.length > 0) {
+      const list = document.createElement('div');
+      list.className = 'check-list';
+      step.checks.forEach(ch => {
+        const item = document.createElement('div');
+        item.className = 'check-item';
+        item.id = 'item-' + ch.id;
+
+        let inputHtml = '';
+        if (ch.type === 'text') {
+          inputHtml = `<div class="check-input-row">
+            <input class="check-input" id="inp-${ch.id}" placeholder="${ch.input || ''}" oninput="saveInput('${ch.id}', this.value)">
+          </div>`;
+        }
+        if (ch.options) {
+          const opts = ch.options.map(o => {
+            const cls = o === 'OK' || o === 'Fatto' || o === 'Confermato' || o === 'Corretto' || o === 'Presente' || o === 'Pulito' || o === 'Integri' || o === 'Normale' || o === 'Libero' || o === 'Stabile' || o === 'Completata' || o === 'Sì' || o === 'Risolto' || o === 'Non necessario'
+              ? 'ok' : (o === 'Bruciati' || o === 'Scattato' || o === 'Ostruito' || o === 'Danneggiato' || o === 'Usurata' || o === 'Bloccata' || o === 'Anomalia' || o === 'Sporco' || o === 'Attrito anomalo' || o === 'Troppo tese' || o === 'Eccessivo' || o === 'Persiste' || o === 'Scattato' || o === 'Invertito' || o === 'Guasto' || o === 'Contaminazione' || o === 'Da regolare' || o === 'Disallineate' || o === 'Abbondante' || o === 'Oscilla a caso' || o === 'Incoerente' || o === 'No, blackout' || o === 'No — ERRORE COMUNE' || o === 'Aperti — TAPPA SUBITO')
+              ? 'bad' : 'warn';
+            return `<button class="opt-btn" id="opt-${ch.id}-${o.replace(/\s+/g,'_')}" onclick="selectOption('${ch.id}', '${o}', '${cls}')">${o}</button>`;
+          }).join('');
+          inputHtml = `<div class="check-options">${opts}</div>`;
+        }
+
+        item.innerHTML = `
+          <div class="check-item-top">
+            <div class="check-box" id="cb-${ch.id}" onclick="toggleCheck('${ch.id}')"></div>
+            <div class="check-label">${ch.label}</div>
+          </div>
+          ${inputHtml}
+        `;
+        list.appendChild(item);
+      });
+      panel.appendChild(list);
+    }
+
+    // Decision box
+    const dec = document.createElement('div');
+    dec.className = 'decision-box' + (step.isStop ? ' stop' : '');
+    dec.innerHTML = `<div class="decision-box-title">${step.isStop ? '🔴 STOP — CHIAMA TONINO' : '⚙ DECISIONE'}</div>` +
+      step.decision.map(d => `<div class="decision-item">${d}</div>`).join('');
+    panel.appendChild(dec);
+
+    // Lock notice
+    if (idx > 0) {
+      const lock = document.createElement('div');
+      lock.className = 'lock-notice' + (idx > currentStep ? ' visible' : '');
+      lock.id = 'lock-' + idx;
+      lock.textContent = '⬆ Completa lo step precedente prima di procedere';
+      panel.appendChild(lock);
+    }
+
+    // Nav button
+    if (idx === currentStep) {
+      const nav = document.createElement('div');
+      nav.className = 'step-nav';
+      if (step.isStop) {
+        nav.innerHTML = `
+          <button class="btn-next stop" onclick="openTonino()">📞 Chiama Tonino ora</button>
+        `;
+      } else if (idx === currentSOP.steps.length - 1) {
+        nav.innerHTML = `
+          <button class="btn-next complete" id="btn-${idx}" onclick="completeStep(${idx})" ${step.checks.length > 0 ? 'disabled' : ''}>✓ Completa intervento</button>
+        `;
+      } else {
+        nav.innerHTML = `
+          <button class="btn-next" id="btn-${idx}" onclick="completeStep(${idx})" ${step.checks.length > 0 ? 'disabled' : ''}>Prossimo step →</button>
+        `;
+      }
+      panel.appendChild(nav);
+    }
+
+    container.appendChild(panel);
+  });
+
+  // Ripristina valori salvati
+  Object.keys(stepData).forEach(k => {
+    if (stepData[k].checked) {
+      const cb = document.getElementById('cb-' + k);
+      if (cb) cb.classList.add('checked');
+    }
+    if (stepData[k].inputVal !== undefined) {
+      const inp = document.getElementById('inp-' + k);
+      if (inp) inp.value = stepData[k].inputVal;
+    }
+    if (stepData[k].optVal !== undefined) {
+      const cleanId = stepData[k].optVal.replace(/\s+/g,'_');
+      const btn = document.getElementById(`opt-${k}-${cleanId}`);
+      if (btn) btn.classList.add(`selected-${stepData[k].optClass}`);
+    }
+  });
+
+  checkStepCompletable(currentStep);
+}
+
+function toggleCheck(id) {
+  if (!stepData[id]) stepData[id] = {};
+  stepData[id].checked = !stepData[id].checked;
+  const cb = document.getElementById('cb-' + id);
+  if (stepData[id].checked) {
+    cb.classList.add('checked');
+  } else {
+    cb.classList.remove('checked');
+  }
+  checkStepCompletable(currentStep);
+}
+
+function selectOption(id, value, cls) {
+  const step = currentSOP.steps[currentStep];
+  const ch = step.checks.find(c => c.id === id);
+  if (!ch) return;
+  // Deseleziona tutti i bottoni di questa domanda
+  ch.options.forEach(o => {
+    const btn = document.getElementById(`opt-${id}-${o.replace(/\s+/g,'_')}`);
+    if (btn) {
+      btn.classList.remove('selected-ok','selected-bad','selected-warn');
+    }
+  });
+  // Seleziona quello cliccato
+  const btn = document.getElementById(`opt-${id}-${value.replace(/\s+/g,'_')}`);
+  if (btn) btn.classList.add(`selected-${cls}`);
+
+  if (!stepData[id]) stepData[id] = {};
+  stepData[id].optVal = value;
+  stepData[id].optClass = cls;
+
+  // Auto-check la checkbox
+  stepData[id].checked = true;
+  const cb = document.getElementById('cb-' + id);
+  if (cb) cb.classList.add('checked');
+
+  checkStepCompletable(currentStep);
+}
+
+function saveInput(id, value) {
+  if (!stepData[id]) stepData[id] = {};
+  stepData[id].inputVal = value;
+}
+
+function checkStepCompletable(idx) {
+  const step = currentSOP.steps[idx];
+  if (!step) return;
+  const btn = document.getElementById('btn-' + idx);
+  if (!btn) return;
+  if (step.checks.length === 0) {
+    btn.disabled = false;
+    return;
+  }
+  const allChecked = step.checks.every(ch => stepData[ch.id] && stepData[ch.id].checked);
+  btn.disabled = !allChecked;
+}
+
+function completeStep(idx) {
+  stepCompleted[idx] = true;
+  // Badge
+  const badge = document.getElementById('badge-' + idx);
+  if (badge) badge.classList.add('visible');
+
+  if (idx < currentSOP.steps.length - 1) {
+    currentStep = idx + 1;
+    updateProgress();
+    renderAllSteps();
+    setTimeout(() => scrollToStep(currentStep), 100);
+  } else {
+    showSummary();
+  }
+}
+
+function scrollToStep(idx) {
+  const panel = document.getElementById('step-panel-' + idx);
+  if (panel) {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function showSummary() {
+  document.getElementById('sopScreen').style.display = 'none';
+  document.getElementById('manScreen').style.display = 'none';
+  const sum = document.getElementById('summaryScreen');
+  sum.classList.add('active');
+
+  // Dati intervento
+  const dataFields = [
+    ['Cliente', document.getElementById('fCliente').value || '—'],
+    ['Data', document.getElementById('fData').value || '—'],
+    ['Tecnico', document.getElementById('fTecnico').value || '—'],
+    ['Macchina', document.getElementById('fMacchina').value || '—'],
+    ['Ore macchina', document.getElementById('fOre').value || '—'],
+    ['SOP eseguita', currentSOP.title],
+  ];
+  document.getElementById('summaryContent').innerHTML = dataFields
+    .map(([l, v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`)
+    .join('');
+
+  // Valori chiave inseriti
+  const allInputs = [];
+  currentSOP.steps.forEach((step, idx) => {
+    step.checks.forEach(ch => {
+      const d = stepData[ch.id];
+      if (d) {
+        const val = d.optVal || d.inputVal || (d.checked ? '✓' : '');
+        if (val && val !== '✓') {
+          allInputs.push([ch.label.substring(0, 40), val]);
+        }
+      }
+    });
+  });
+
+  document.getElementById('summaryData').innerHTML = allInputs.length > 0
+    ? allInputs.map(([l, v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`).join('')
+    : '<div style="color:var(--steel);font-size:13px;padding:8px 0">Nessun valore numerico inserito</div>';
+}
+
+function openTonino() {
+  document.getElementById('toninoModal').classList.add('open');
+}
+function closeTonino() {
+  document.getElementById('toninoModal').classList.remove('open');
+}
+
+// Chiudi modale cliccando fuori
+document.getElementById('toninoModal').addEventListener('click', function(e) {
+  if (e.target === this) closeTonino();
+});
+</script>
+</body>
+</html>
