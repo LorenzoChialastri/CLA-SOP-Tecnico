@@ -2716,8 +2716,9 @@ function renderAllSteps() {
     // Decision box
     const dec = document.createElement('div');
     dec.className = 'decision-box' + (step.isStop ? ' stop' : '');
+    if (!step.isStop && (!step.decision || step.decision.length === 0)) dec.style.display = 'none';
     dec.innerHTML = `<div class="decision-box-title">${step.isStop ? '🔴 STOP — CHIAMA TONINO' : '⚙ DECISIONE'}</div>` +
-      step.decision.map(d => `<div class="decision-item">${d}</div>`).join('');
+      (step.decision || []).map(d => `<div class="decision-item">${d}</div>`).join('');
     panel.appendChild(dec);
 
     // Lock notice
