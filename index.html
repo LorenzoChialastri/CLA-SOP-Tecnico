@@ -2643,7 +2643,10 @@ function renderAllSteps() {
       nav.className = 'step-nav';
       if (step.isStop) {
         nav.innerHTML = `
-          <button class="btn-next stop" onclick="openTonino()">📞 Chiama Tonino ora</button>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="tel:+393404102949" class="btn-next stop" style="text-align:center;text-decoration:none;display:block">📞 Chiama Tonino ora</a>
+            <button class="btn-next" style="background:#64748B" onclick="completeStep(${idx})">Continua comunque →</button>
+          </div>
         `;
       } else if (idx === currentSOP.steps.length - 1) {
         nav.innerHTML = `
@@ -2779,23 +2782,29 @@ function showSummary() {
     .map(([l, v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`)
     .join('');
 
-  // Valori chiave inseriti
+  // Tutte le risposte della checklist
   const allInputs = [];
-  currentSOP.steps.forEach((step, idx) => {
+  currentSOP.steps.forEach((step, stepIdx) => {
+    const stepLabel = step.title || ('Step ' + (stepIdx+1));
+    const stepAnswers = [];
     step.checks.forEach(ch => {
       const d = stepData[ch.id];
-      if (d) {
-        const val = d.optVal || d.inputVal || (d.checked ? '✓' : '');
-        if (val && val !== '✓') {
-          allInputs.push([ch.label.substring(0, 40), val]);
-        }
-      }
+      const val = d ? (d.optVal || d.inputVal || (d.checked ? '✓ Confermato' : '')) : '';
+      stepAnswers.push([ch.label.replace(/📷|🔧|⚡|🌡️|📋/g,'').trim().substring(0,60), val || '—']);
     });
+    if (stepAnswers.length > 0) {
+      allInputs.push({title: stepLabel, rows: stepAnswers});
+    }
   });
 
   document.getElementById('summaryData').innerHTML = allInputs.length > 0
-    ? allInputs.map(([l, v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`).join('')
-    : '<div style="color:var(--steel);font-size:13px;padding:8px 0">Nessun valore numerico inserito</div>';
+    ? allInputs.map(s => 
+        `<div style="margin-bottom:8px">
+          <div style="font-size:11px;font-weight:bold;color:#1A2F4B;text-transform:uppercase;letter-spacing:.5px;padding:4px 0;border-bottom:1px solid #CBD5E1;margin-bottom:4px">${s.title}</div>
+          ${s.rows.map(([l,v]) => `<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-value">${v}</span></div>`).join('')}
+        </div>`
+      ).join('')
+    : '<div style="color:var(--steel);font-size:13px;padding:8px 0">Nessuna risposta registrata</div>';
 }
 
 function openTonino() {
