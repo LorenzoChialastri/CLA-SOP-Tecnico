@@ -685,6 +685,13 @@
       <div class="sop-card-arrow">›</div>
     </div>
 
+    <div class="sop-group-label" style="margin-top:20px">📋 GARANZIA</div>
+    <div class="sop-card" onclick="startSOP('sopGAR')" style="border-left:4px solid #7C3AED">
+      <div class="sop-icon" style="background:#F5F3FF">🛡️</div>
+      <div class="sop-card-text"><h3>Intervento in Garanzia</h3><p>Compressori · Essiccatori · Pistoni · Pompe del vuoto</p></div>
+      <div class="sop-card-arrow">›</div>
+    </div>
+
     <div class="sop-group-label" style="margin-top:20px">🚧 IN SVILUPPO — prossimamente</div>
     <div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:13px;color:#92400E;line-height:1.8">
       SOP in preparazione con Tonino:<br>
@@ -2105,6 +2112,91 @@ sopN4: {
         { id: "n4_foto_post4", label: "📷 Foto area di lavoro pulita", options: ["Scattata"] }
       ],
       decision: ["Inviare tutte le foto su WhatsApp gruppo tecnici entro fine giornata."]
+    }
+  ]
+}
+,
+
+sopGAR: {
+  title: "SOP-G — INTERVENTO IN GARANZIA",
+  subtitle: "Documentazione obbligatoria per pratiche di garanzia",
+  steps: [
+    {
+      title: "TIPO DI MACCHINA",
+      sop: [
+        "Seleziona il tipo di macchina per cui stai aprendo la pratica di garanzia.",
+        "\u26a0 REGOLA FONDAMENTALE: se nello stesso intervento hai due macchine dello stesso cliente con lo stesso problema, devi compilare DUE fogli separati \u2014 uno per ogni macchina."
+      ],
+      checks: [
+        { id: "gar_tipo", label: "Tipo macchina", options: ["Compressore a vite","Compressore a pistoni","Essiccatore","Pompa del vuoto","Oil-free"] }
+      ]
+    },
+    {
+      title: "DATI CLIENTE E MACCHINA",
+      sop: [
+        "Raccogli tutti i dati prima di procedere con le foto.",
+        "Questi dati sono obbligatori per aprire la pratica presso il fornitore."
+      ],
+      checks: [
+        { id: "gar_cliente", label: "Ragione sociale cliente", input: "Es. Rossi Srl", type: "text" },
+        { id: "gar_indirizzo", label: "Indirizzo e comune cliente", input: "Es. Via Roma 1, Latina", type: "text" },
+        { id: "gar_telefono", label: "Telefono referente cliente", input: "Es. 339 1234567", type: "text" },
+        { id: "gar_marca", label: "Marca macchina", input: "Es. Atlas Copco, ABAC, ALMIG...", type: "text" },
+        { id: "gar_modello", label: "Modello macchina", input: "Es. GA11, B60B...", type: "text" },
+        { id: "gar_matricola", label: "Matricola / Numero di serie", input: "Dalla targhetta macchina", type: "text" },
+        { id: "gar_anno", label: "Anno di acquisto / installazione", input: "Es. 2023", type: "text" }
+      ]
+    },
+    {
+      title: "FOTO OBBLIGATORIE — TARGHETTA E MAGNETO",
+      sop: [
+        "Queste foto sono OBBLIGATORIE. Senza di esse la garanzia non puo essere aperta.",
+        "Scatta le foto in modo che siano leggibili chiaramente \u2014 se non si legge, rifai la foto."
+      ],
+      checks: [
+        { id: "gar_f1", label: "\ud83d\udcf7 Foto targhetta macchina (marca, modello, matricola, dati elettrici)", options: ["Scattata"] },
+        { id: "gar_f2", label: "\ud83d\udcf7 Foto magneto termico (con valore di taratura visibile)", options: ["Scattata"] }
+      ]
+    },
+    {
+      title: "FOTO CENTRALINA",
+      sop: [
+        "La centralina documenta lo stato della macchina al momento dell'intervento.",
+        "Fotografa separatamente ogni schermata richiesta \u2014 non fare una foto sola."
+      ],
+      checks: [
+        { id: "gar_f3", label: "\ud83d\udcf7 Foto centralina con allarmi attivi (se presenti)", options: ["Scattata","Nessun allarme presente"] },
+        { id: "gar_f4", label: "\ud83d\udcf7 Foto centralina con ORE DI LAVORO totali", options: ["Scattata"] },
+        { id: "gar_f5", label: "\ud83d\udcf7 Foto centralina con ORE DI CARICO totali", options: ["Scattata"] }
+      ]
+    },
+    {
+      title: "DOCUMENTAZIONE DEL PROBLEMA",
+      sop: [
+        "Documenta il problema nel modo piu chiaro e completo possibile.",
+        "Piu dettagli fornisci, piu veloce sara la risposta del fornitore per la garanzia.",
+        "Se il problema e visibile o sonoro, registra un video \u2014 vale piu di mille parole."
+      ],
+      checks: [
+        { id: "gar_f6", label: "\ud83d\udcf7 Foto o video del problema (zona interessata, perdita, rottura, ecc.)", options: ["Foto scattata","Video registrato","Problema non visibile"] },
+        { id: "gar_desc", label: "Descrizione dettagliata del problema", input: "Cosa succede, quando, da quanto tempo...", type: "text" },
+        { id: "gar_sintomi", label: "Sintomi rilevati durante l'intervento", input: "Es. rumore anomalo, perdita olio, allarme specifico...", type: "text" },
+        { id: "gar_azioni", label: "Azioni gia eseguite sul campo", input: "Es. reset centralina, verifica livello olio, nessuna...", type: "text" }
+      ]
+    },
+    {
+      title: "INVIO DOCUMENTAZIONE",
+      sop: [
+        "Tutta la documentazione raccolta deve essere inviata ENTRO FINE GIORNATA.",
+        "Non aspettare il giorno dopo \u2014 la garanzia parte dalla data della segnalazione.",
+        "\u26a0 REGOLA DUE FOGLI: se hai effettuato due interventi in garanzia dallo stesso cliente con lo stesso tipo di problema, hai compilato DUE fogli separati \u2014 uno per macchina. Non unire mai due macchine in un unico foglio.",
+        "Invia tutto su WhatsApp al gruppo tecnici CLA e avvisa Francesca DF per aprire la pratica."
+      ],
+      checks: [
+        { id: "gar_invio", label: "Documentazione completa inviata su WhatsApp gruppo tecnici", options: ["Inviata"] },
+        { id: "gar_francesca", label: "Francesca DF avvisata per apertura pratica garanzia", options: ["Avvisata"] },
+        { id: "gar_doppio", label: "Conferma: unico intervento per questo cliente in questa data (o foglio separato compilato per seconda macchina)", options: ["Unico intervento","Secondo foglio compilato separatamente"] }
+      ]
     }
   ]
 }
